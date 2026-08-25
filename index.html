@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>辩证法教材(可视化)</title>
+<style>
+  :root{
+    --ink:#23211e;
+    --ink-soft:#4a463f;
+    --paper:#faf6ef;
+    --paper-2:#f3ece0;
+    --card:#fffdf9;
+    --line:#e4d9c7;
+    --vermilion:#b8472e;     /* 朱砂 */
+    --vermilion-soft:#d98c79;
+    --jade:#2f6b63;          /* 黛青 */
+    --gold:#b8893a;
+    --shadow:0 6px 24px rgba(60,40,20,.08);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.85;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  header{
+    text-align:center;
+    padding:64px 24px 28px;
+  }
+  header .seal{
+    display:inline-block;
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--vermilion);
+    border:1px solid var(--vermilion-soft);
+    border-radius:6px;
+    padding:2px 10px 2px 16px;
+    margin-bottom:18px;
+  }
+  h1{
+    margin:0 0 10px;
+    font-size:34px;
+    letter-spacing:2px;
+  }
+  header p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+  main{
+    width:100%;
+    max-width:960px;
+    padding:24px 24px 64px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+  }
+  a.card{
+    display:block;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 24px 22px;
+    text-decoration:none;
+    color:inherit;
+    position:relative;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  a.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 32px rgba(60,40,20,.14);
+  }
+  .card .stage{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    font-size:20px;
+    font-weight:600;
+    color:#fff;
+    background:var(--jade);
+    margin-bottom:14px;
+  }
+  .card:nth-child(1) .stage{background:var(--vermilion);}
+  .card:nth-child(2) .stage{background:var(--gold);}
+  .card h2{
+    margin:0 0 8px;
+    font-size:19px;
+    letter-spacing:1px;
+  }
+  .card p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:14.5px;
+  }
+  .card .arrow{
+    display:block;
+    margin-top:16px;
+    font-size:14px;
+    color:var(--vermilion);
+  }
+  footer{
+    padding:0 24px 48px;
+    color:var(--ink-soft);
+    font-size:13px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <span class="seal">唯 物 辩 证 法</span>
+    <h1>辩证法教材(可视化)</h1>
+    <p>理论学习 → 实践理论 → 通过理论改造或重新认识,三阶段可视化学习路线</p>
+  </header>
+  <main>
+    <a class="card" href="辩证法教材_第一阶段_可视化.html">
+      <span class="stage">壹</span>
+      <h2>第一阶段 · 理论学习</h2>
+      <p>辩证法概述与历史源流、黑格尔辩证法、两大总特征与三大规律、五大基本范畴、中西辩证思维比较。</p>
+      <span class="arrow">进入学习 →</span>
+    </a>
+    <a class="card" href="辩证法教材_第二阶段_可视化.html">
+      <span class="stage">贰</span>
+      <h2>第二阶段 · 实践理论</h2>
+      <p>辩证思维方法训练,用辩证法分析社会现象、个人决策与成长,以及在日常思维中的运用。</p>
+      <span class="arrow">进入学习 →</span>
+    </a>
+    <a class="card" href="辩证法教材_第三阶段_可视化.html">
+      <span class="stage">叁</span>
+      <h2>第三阶段 · 通过理论改造或重新认识</h2>
+      <p>重新审视形而上学思维倾向,辩证法与世界观重构,综合实践——辩证分析报告与展望。</p>
+      <span class="arrow">进入学习 →</span>
+    </a>
+  </main>
+  <footer>唯物辩证法 · 三阶段可视化教材</footer>
+</body>
+</html>
