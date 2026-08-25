@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>辩证法教材 · 第三阶段：通过理论改造或重新认识（可视化）</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{
+    --ink:#23211e;
+    --ink-soft:#4a463f;
+    --paper:#faf6ef;
+    --paper-2:#f3ece0;
+    --card:#fffdf9;
+    --line:#e4d9c7;
+    --vermilion:#b8472e;     /* 朱砂 */
+    --vermilion-soft:#d98c79;
+    --jade:#2f6b63;          /* 黛青 */
+    --gold:#b8893a;
+    --shadow:0 6px 24px rgba(60,40,20,.08);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.85;
+    font-size:16px;
+  }
+  h1,h2,h3,h4{
+    font-family:"Noto Serif SC","Songti SC","PingFang SC",serif;
+    color:var(--ink);
+    line-height:1.4;
+  }
+  /* ===== Layout ===== */
+  .layout{display:flex;max-width:1280px;margin:0 auto;}
+  /* ===== Sidebar ===== */
+  .sidebar{
+    width:240px;flex:0 0 240px;
+    position:sticky;top:0;align-self:flex-start;
+    height:100vh;overflow-y:auto;
+    padding:28px 18px;
+    border-right:1px solid var(--line);
+    background:linear-gradient(180deg,#fdfaf4,#f6efe3);
+  }
+  .sidebar .brand{
+    font-family:"Noto Serif SC",serif;
+    font-size:13px;letter-spacing:2px;color:var(--vermilion);
+    font-weight:700;margin-bottom:4px;
+  }
+  .sidebar .brand-sub{font-size:12px;color:var(--ink-soft);margin-bottom:22px;}
+  .nav-group{font-size:12px;color:#9a8f7d;margin:18px 0 8px;letter-spacing:1px;font-weight:600;}
+  .sidebar a{
+    display:block;padding:7px 12px;margin:2px 0;
+    color:var(--ink-soft);text-decoration:none;border-radius:8px;
+    font-size:14px;border-left:3px solid transparent;transition:.15s;
+  }
+  .sidebar a:hover{background:var(--paper-2);color:var(--ink);}
+  .sidebar a.active{background:#fbeee8;border-left-color:var(--vermilion);color:var(--vermilion);font-weight:600;}
+  .sidebar a.sub{padding-left:26px;font-size:13px;color:#8a8275;}
+  /* ===== Main ===== */
+  .main{flex:1;min-width:0;padding:0 0 80px;}
+  .hero{
+    padding:54px 48px 38px;
+    background:
+      radial-gradient(1100px 300px at 80% -10%, rgba(184,71,46,.10), transparent),
+      linear-gradient(180deg,#fffdf9, var(--paper));
+    border-bottom:1px solid var(--line);
+  }
+  .hero .kicker{font-size:13px;letter-spacing:3px;color:var(--vermilion);font-weight:700;}
+  .hero h1{font-size:34px;margin:8px 0 6px;letter-spacing:1px;}
+  .hero .lead{font-size:15px;color:var(--ink-soft);max-width:760px;}
+  .phase-tag{
+    display:inline-block;margin-top:16px;padding:6px 14px;border-radius:999px;
+    background:#fbeee8;color:var(--vermilion);font-size:13px;font-weight:600;
+    border:1px solid #f0d5cb;
+  }
+  .content{padding:0 48px;}
+  /* ===== Callout ===== */
+  .callout{
+    background:var(--card);border:1px solid var(--line);border-left:5px solid var(--jade);
+    border-radius:12px;padding:20px 24px;margin:28px 0;box-shadow:var(--shadow);
+  }
+  .callout .tag{font-size:12px;font-weight:700;color:var(--jade);letter-spacing:1px;margin-bottom:6px;}
+  .callout p{margin:6px 0;color:var(--ink-soft);}
+  /* ===== Module block ===== */
+  .module{
+    margin-top:46px;padding-top:26px;border-top:1px dashed var(--line);
+  }
+  .module-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .module-head .mno{
+    font-family:"Noto Serif SC",serif;font-size:22px;font-weight:700;color:#fff;
+    background:var(--vermilion);padding:6px 16px;border-radius:10px;box-shadow:var(--shadow);
+  }
+  .module-head h2{font-size:25px;margin:0;}
+  .module-meta{font-size:13px;color:#a89c88;margin-left:auto;}
+  .section{margin:26px 0;}
+  .section h3{
+    font-size:19px;margin:0 0 12px;padding-left:13px;
+    border-left:4px solid var(--gold);
+  }
+  .section h4{font-size:16px;color:var(--vermilion);margin:18px 0 8px;}
+  /* ===== Goals card ===== */
+  .goals{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 22px;margin:8px 0 4px;box-shadow:var(--shadow);
+  }
+  .goals ul{margin:0;padding-left:20px;}
+  .goals li{margin:6px 0;}
+  /* ===== Method card ===== */
+  .method{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 24px;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .method .label{
+    display:inline-block;font-size:12px;font-weight:700;color:var(--jade);
+    background:#eaf3f1;border:1px solid #cfe6e1;border-radius:6px;padding:2px 10px;margin-bottom:8px;
+  }
+  .def-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+  .def-pair .d{background:var(--paper-2);border-radius:10px;padding:12px 14px;font-size:14.5px;}
+  .def-pair .d b{color:var(--vermilion);}
+  /* ===== Lists ===== */
+  ul.clean,ol.clean{margin:8px 0;padding-left:22px;}
+  ul.clean li,ol.clean li{margin:7px 0;}
+  .hint{font-size:13.5px;color:#8a8073;font-style:italic;}
+  /* ===== Step flow ===== */
+  .steps{counter-reset:s;margin:14px 0;padding:0;list-style:none;}
+  .steps li{
+    counter-increment:s;position:relative;padding:12px 16px 12px 52px;margin:10px 0;
+    background:var(--paper-2);border-radius:10px;border:1px solid var(--line);
+  }
+  .steps li::before{
+    content:counter(s);position:absolute;left:14px;top:12px;
+    width:26px;height:26px;border-radius:50%;background:var(--vermilion);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+    font-family:"Noto Serif SC",serif;
+  }
+  /* ===== Case grid ===== */
+  .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0;}
+  .case{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+    box-shadow:var(--shadow);
+  }
+  .case .ct{font-weight:700;color:var(--vermilion);font-size:15px;margin-bottom:8px;
+    border-bottom:1px solid var(--line);padding-bottom:6px;}
+  .case ul{margin:6px 0;padding-left:18px;font-size:14.5px;}
+  .case ul li{margin:5px 0;}
+  /* ===== Table ===== */
+  .tbl-wrap{overflow-x:auto;margin:14px 0;}
+  table.styled{
+    width:100%;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
+    font-size:14.5px;
+  }
+  table.styled thead th{
+    background:var(--ink);color:#fdf6ec;text-align:left;padding:12px 16px;font-weight:600;
+    font-family:"Noto Serif SC",serif;letter-spacing:.5px;
+  }
+  table.styled td{padding:11px 16px;border-top:1px solid var(--line);vertical-align:top;}
+  table.styled tbody tr:nth-child(even){background:#fbf6ee;}
+  table.styled b{color:var(--vermilion);}
+  /* ===== Mermaid ===== */
+  .diagram-box{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;margin:16px 0;box-shadow:var(--shadow);text-align:center;
+  }
+  .diagram-box .cap{font-size:13px;color:var(--ink-soft);margin-top:8px;}
+  .mermaid{background:transparent;}
+  /* ===== Task card ===== */
+  .task{
+    background:linear-gradient(135deg,#fffdf9,#fbf2ea);
+    border:1px solid #f0d9cd;border-left:5px solid var(--gold);
+    border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .task .t-title{font-weight:700;color:var(--gold);font-size:15px;margin-bottom:8px;}
+  /* ===== Checklist ===== */
+  .checklist{list-style:none;padding:0;margin:10px 0;}
+  .checklist li{
+    display:flex;gap:12px;align-items:flex-start;padding:11px 16px;margin:8px 0;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);
+  }
+  .checklist .box{
+    flex:0 0 22px;width:22px;height:22px;border:2px solid var(--vermilion);border-radius:6px;
+    margin-top:2px;position:relative;
+  }
+  .selfcheck{background:#eef4f2;border:1px solid #cfe6df;border-radius:12px;padding:16px 20px;margin:14px 0;}
+  .selfcheck .sc-title{font-weight:700;color:var(--jade);margin-bottom:8px;}
+  /* ===== Footer ===== */
+  .footer{
+    margin:50px 48px 0;padding:22px 0 0;border-top:1px solid var(--line);
+    font-size:13px;color:#a89c88;text-align:center;
+  }
+  /* ===== Responsive ===== */
+  @media(max-width:900px){
+    .layout{flex-direction:column;}
+    .sidebar{position:static;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);}
+    .sidebar a.sub{display:none;}
+    .content,.hero,.footer{padding-left:22px;padding-right:22px;}
+    .def-pair,.case-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="brand">辩证法教材</div>
+    <div class="brand-sub">第三阶段 · 改造重新认识</div>
+    <div class="nav-group">阶段概览</div>
+    <a href="#top">阶段目标</a>
+    <div class="nav-group">核心模块</div>
+    <a href="#m10">M10 重新审视形而上学</a>
+    <a href="#m11">M11 世界观重构</a>
+    <a href="#m11-1" class="sub">· 重新理解进步</a>
+    <a href="#m11-3" class="sub">· 理论与实践循环</a>
+    <a href="#m12">M12 综合实践报告</a>
+    <a href="#m12-2" class="sub">· 五部分结构模板</a>
+    <div class="nav-group">收尾</div>
+    <a href="#outlook">完成后的展望</a>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="hero" id="top">
+      <div class="kicker">DIALECTICAL MATERIALISM · 改造篇</div>
+      <h1>辩证法教材 — 第三阶段：通过理论改造或重新认识</h1>
+      <p class="lead">用辩证法反思和重构既有认知框架，完成从"学辩证法"到"用辩证法改造思维方式"的跃迁。本阶段核心不是"学新东西"，而是"重新看旧东西"——把前两个阶段的产出物拿出来重新审视，看看辩证法是否改变了你看待它们的方式。这一阶段最需要诚实——对自己原有的思维模式不做美化。</p>
+      <span class="phase-tag">理论学习（正题）→ 实践理论（反题）→ 通过理论改造 / 重新认识（合题·否定之否定·更高回归）</span>
+    </header>
+
+    <div class="content">
+
+      <!-- ===== M10 ===== -->
+      <section class="module" id="m10">
+        <div class="module-head">
+          <span class="mno">M10</span>
+          <h2>重新审视形而上学思维倾向</h2>
+          <span class="module-meta">非此即彼 · 矛盾价值 · 变化稳定 · 片面全面</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能识别自己思维中的"非此即彼"模式并用辩证法重构</li>
+              <li>能重新认识"矛盾"的价值——矛盾不是障碍而是发展动力</li>
+              <li>能重新理解"变化与稳定""片面与全面"的辩证关系</li>
+              <li>产出一份"思维模式改造清单"，包含至少 5 个被修正的认知</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>10.1 识别"非此即彼"思维模式</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>模式</th><th>表现</th><th>典型话语</th></tr></thead>
+              <tbody>
+                <tr><td><b>非此即彼</b></td><td>只看到对立，看不到统一</td><td>"要么成功要么失败，没有中间状态"</td></tr>
+                <tr><td><b>静止固化</b></td><td>用一时的状态定义永久</td><td>"我就是这样的人，改不了"</td></tr>
+                <tr><td><b>孤立切割</b></td><td>把事物从关系中割裂出来看</td><td>"这个问题就是他的责任，跟我无关"</td></tr>
+                <tr><td><b>片面归因</b></td><td>只找一个原因，忽视多因多果</td><td>"失败就是因为不够努力"</td></tr>
+                <tr><td><b>直线思维</b></td><td>看不到曲折和反复</td><td>"进步应该是直线上升的，后退就是失败"</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="method">
+            <span class="label">自我识别方法</span>
+            <ol class="clean">
+              <li>回顾你前两个阶段的产出物，找找有没有"非此即彼"的痕迹</li>
+              <li>回忆你最近做的 3 个判断——是否隐含了"要么 A 要么 B"的预设？</li>
+              <li>注意你的日常语言——"总是""从不""一定""不可能"这类绝对化词汇是形而上学思维的信号</li>
+              <li>当你感到"没有出路"时，检查是否因为你只看到了两个极端选项而忽略了中间道路</li>
+            </ol>
+          </div>
+
+          <div class="method">
+            <span class="label">辩证重构方向</span>
+            <ul class="clean">
+              <li>"非此即彼" → "亦此亦彼"：A 和 B 不是只有对立，还有统一和转化</li>
+              <li>"要么……要么……" → "既……又……（在什么条件下）"</li>
+              <li>"总是/从不" → "在当前条件下/在主要方面"</li>
+              <li>"就是因为他" → "多个因素共同作用，其中他的是……因素"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>10.2 重新认识"矛盾"的价值</h3>
+          <div class="def-pair">
+            <div class="d"><b>原有的认知（形而上学）</b>：矛盾 = 问题 = 障碍 = 需要消除的东西。遇到矛盾就想"解决掉"让一切回归"没有矛盾"的平静。</div>
+            <div class="d"><b>辩证重构后的认知</b>：矛盾 = 事物发展的动力 = 普遍存在的 = 不可消除的。矛盾不能"消除"，只能"转化"。矛盾的存在不等于"出了问题"，而是"正在发展"的标志。</div>
+          </div>
+          <p><b>深层转变</b>：</p>
+          <ul class="clean">
+            <li>从"害怕矛盾"到"正视矛盾"——遇到矛盾不再焦虑，而是分析矛盾的性质和方向</li>
+            <li>从"消灭矛盾的一方"到"创造条件促进矛盾转化"</li>
+            <li>从"追求无矛盾的平静"到"在矛盾中前进"——平静可能是停滞的伪装，矛盾是活力的信号</li>
+          </ul>
+          <p class="hint">具体例子：旧认知"团队有分歧说明不和谐"→ 新认知"团队有分歧说明在思考，关键看分歧是否推动进步"。</p>
+        </div>
+
+        <div class="section">
+          <h3>10.3 重新理解"变化与稳定"</h3>
+          <div class="def-pair">
+            <div class="d"><b>原有的认知</b>：变化 = 不正常，稳定 = 正常。目标是达到"稳定不变"的状态。</div>
+            <div class="d"><b>辩证重构后的认知</b>：变化是绝对的、永恒的；稳定是相对的、暂时的。稳定不是"不变"，而是"变化在度之内"。追求的不是"不变"，而是"在变化中保持方向的稳定"。</div>
+          </div>
+          <p><b>对个人成长的启示</b>：</p>
+          <ul class="clean">
+            <li>不要追求"稳定不变的状态"——那意味着停滞</li>
+            <li>要追求"螺旋上升中的阶段性稳定"</li>
+            <li>感到"一切都在变"时，找到"不变的方向"（价值观、长期目标）作为锚点</li>
+            <li>感到"一切都停滞"时，主动引入矛盾（挑战、新视角）打破平衡，促进质变</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>10.4 重新认识"片面"与"全面"</h3>
+          <div class="def-pair">
+            <div class="d"><b>原有的认知</b>：片面 = 错误的，全面 = 正确的。应该追求"全面"，避免"片面"。</div>
+            <div class="d"><b>辩证重构后的认知</b>：任何认识在特定阶段都是"片面的"。"全面"不是"面面俱到"，而是"看到主要矛盾和矛盾的主要方面"。片面和全面是辩证关系：从片面到全面是一个发展过程。</div>
+          </div>
+          <p><b>深层理解</b>：</p>
+          <ul class="clean">
+            <li>不要害怕"片面"——在认识初期，抓住一个方面深入下去比"什么都沾一点"更有价值</li>
+            <li>但不要固守"片面"——当深入到一定程度后，必须跳出单一视角，与其他方面综合</li>
+            <li>"全面"也不是终极状态——全面后还要深化，可能推翻之前的"全面"认识，进入更高层次的循环</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M10</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>原有认知（形而上学）</th><th>重构后认知（辩证法）</th></tr></thead>
+              <tbody>
+                <tr><td>矛盾 = 需要消除的问题</td><td>矛盾 = 发展的动力，不能消除只能转化</td></tr>
+                <tr><td>变化 = 不正常</td><td>变化 = 绝对常态，稳定 = 相对暂态</td></tr>
+                <tr><td>片面 = 错误</td><td>片面 = 认识必经阶段，全面 = 发展目标</td></tr>
+                <tr><td>非此即彼</td><td>亦此亦彼，条件性共存</td></tr>
+                <tr><td>直线进步</td><td>螺旋上升，曲折中前进</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M10</h3>
+          <ol class="clean">
+            <li>回顾你在 M1–M9 中写过的所有产出物，找出至少 3 处形而上学思维的痕迹，用辩证法重新表述。</li>
+            <li>写下你最近 1 个月内使用的绝对化词汇（"总是""从不""一定""不可能"）清单，为每一条加上条件限定。</li>
+            <li>找一个你曾经认为"出了问题"的矛盾情境，用"矛盾是发展动力"的眼光重新审视——这个矛盾推动了什么变化？</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M10</div>
+          <p><b>任务：</b>写出"我的思维模式改造清单"，列出至少 5 个被辩证法修正的认知。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>每条采用"原有认知 → 辩证重构后认知"的对比格式</li>
+            <li>每条需注明这个认知改造来自哪个阶段/模块的启发</li>
+            <li>每条需说明：这个改造对你的实际行为会产生什么改变</li>
+            <li>不要写空泛的"我学会了全面看问题"——要具体到"以前我认为 X，现在我理解 Y，所以在 Z 场景下我会改为做 W"</li>
+            <li>全文不少于 800 字</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M11 ===== -->
+      <section class="module" id="m11">
+        <div class="module-head">
+          <span class="mno">M11</span>
+          <h2>辩证法与世界观重构</h2>
+          <span class="module-meta">进步观 · 自我与世界 · 理论与实践 · 发展看问题</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能用辩证法重新理解"进步"观念</li>
+              <li>能用普遍联系观重新认识自己与世界的关系</li>
+              <li>能辩证看待理论与实践的关系</li>
+              <li>完成一篇体现至少 3 个维度认知转变的自述文</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section" id="m11-1">
+          <h3>11.1 重新理解"进步"</h3>
+          <div class="def-pair">
+            <div class="d"><b>形而上学的进步观</b>：进步 = 直线向前 = 一直变好。后退 = 失败 = 不应该发生。衡量进步的标准单一、固定。</div>
+            <div class="d"><b>辩证法的进步观</b>：进步是螺旋上升的；后退是前进的环节；进步的标准在发展；进步有方向性但无终点；进步不是自动的，需要人的能动参与。</div>
+          </div>
+          <p><b>对个人成长的深层启示</b>：</p>
+          <ul class="clean">
+            <li>不要因为"后退"而绝望——后退可能是螺旋上升中的正常曲折</li>
+            <li>不要用旧标准衡量新阶段——你进步了，"进步"的标准也变了</li>
+            <li>不要设定"最终目标"然后认为到达了就结束</li>
+            <li>进步不是"越来越完美"——是"越来越丰富"，矛盾的层次越来越深</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>11.2 重新认识自己与世界的关系</h3>
+          <div class="def-pair">
+            <div class="d"><b>形而上学的关系观</b>：我 = 独立个体，世界 = 外部环境。单向影响——我影响世界，或世界影响我。</div>
+            <div class="d"><b>辩证法的关系观</b>：普遍联系（我处于关系网络中）；交互作用（我在改造世界的同时也被世界改造）；部分与整体的辩证；历史性。</div>
+          </div>
+          <p><b>深层启示</b>：</p>
+          <ul class="clean">
+            <li>不要把个人问题完全"内归因"或完全"外归因"——个人与环境是矛盾双方，相互作用</li>
+            <li>改变自己 = 改变关系网络的一部分 = 间接改变世界的一部分</li>
+            <li>理解自己需要理解自己处于什么关系中——自我认识不能脱离环境分析</li>
+          </ul>
+        </div>
+
+        <div class="section" id="m11-3">
+          <h3>11.3 辩证看待理论与实践的关系</h3>
+          <div class="def-pair">
+            <div class="d"><b>形而上学的理解</b>：理论 = 认知，实践 = 行动，两者分开。先学理论，再用实践验证——单向。理论指导实践，实践从属于理论。</div>
+            <div class="d"><b>辩证法的理解</b>：理论来自实践；理论指导实践；实践检验理论；理论与实践的辩证循环；两者对立统一。</div>
+          </div>
+          <div class="diagram-box">
+            <div class="mermaid">
+graph LR
+    P["实践<br/>（经验素材）"] --> T["理论<br/>（抽象出的规律）"]
+    T --> P2["新的实践<br/>（避免盲目性）"]
+    P2 --> T2["修正的理论<br/>（被实践检验·深化）"]
+    T2 -.->|"无限循环上升"| P
+            </div>
+            <div class="cap">图示：理论与实践的辩证循环（对应 11.3）</div>
+          </div>
+          <p><b>对学习辩证法本身的启示</b>：</p>
+          <ul class="clean">
+            <li>你学辩证法理论（M1–M5）只是起点，必须经过实践（M6–M9）才能检验你是否真懂</li>
+            <li>在实践中发现理论"不够用"——这不是理论的失败，是理论与实践的矛盾在推动你深化认识</li>
+            <li>第三阶段（M10–M12）就是理论与实践碰撞后的"重新认识"——螺旋上升中的新阶段</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>11.4 从"静止看问题"到"发展看问题"的根本转变</h3>
+          <p>这是辩证法带来最根本的世界观转变。</p>
+          <div class="def-pair">
+            <div class="d"><b>静止看问题的特征</b>：用当前状态定义事物；把问题看作固定不变；把关系看作凝固的；追求"一劳永逸"的解决方案。</div>
+            <div class="d"><b>发展看问题的特征</b>：看趋势不看截面；看过程不看状态；看关系的动态；追求动态平衡而非一劳永逸。</div>
+          </div>
+          <p><b>这个转变之所以是"根本"的</b>：它改变了你对待一切事物的基本态度——从"管理静态状态"变为"参与动态发展"。这不只是方法论的改变，是世界观的改变。</p>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M11</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>维度</th><th>旧世界观</th><th>辩证重构后</th></tr></thead>
+              <tbody>
+                <tr><td><b>进步观</b></td><td>直线向前，后退=失败</td><td>螺旋上升，后退是前进的环节</td></tr>
+                <tr><td><b>自我与世界</b></td><td>独立个体 vs 外部环境</td><td>普遍联系中的交互作用</td></tr>
+                <tr><td><b>理论与实践</b></td><td>先学后用，单向</td><td>辩证循环，互相检验推动</td></tr>
+                <tr><td><b>看问题方式</b></td><td>静止、固定、追求终态</td><td>发展、动态、看趋势</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M11</h3>
+          <ol class="clean">
+            <li>回顾你的成长历程，找到一个"螺旋上升"的实例——你曾经"后退"的阶段，后来如何变成了更高层次的回归？</li>
+            <li>你和你的工作/家庭/社会环境是什么关系？用"普遍联系+交互作用"的框架重新审视。</li>
+            <li>你学辩证法这个行为本身，如何体现"理论与实践的辩证循环"？</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M11</div>
+          <p><b>任务：</b>完成一篇"辩证法如何改变我的思维方式"自述文（不少于 1500 字）。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>体现至少 3 个维度的认知转变（可从 10.1–10.4 和 11.1–11.4 中选）</li>
+            <li>每个维度的转变需有具体例子支撑——"以前我认为 X，经过 Y 模块的实践，我发现在 Z 条件下，实际上是 W，所以我现在改为 V"</li>
+            <li>文章应体现"理论→实践→重新认识"的完整闭环</li>
+            <li>不要写成"学习总结"——要写成"认知转变的真实记录"</li>
+            <li>诚实：如果你在某些方面还没有转变，也如实记录</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M12 ===== -->
+      <section class="module" id="m12">
+        <div class="module-head">
+          <span class="mno">M12</span>
+          <h2>综合实践——辩证分析报告</h2>
+          <span class="module-meta">最终交付物 · 2000 字+ · 五部分结构</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>运用全套辩证法工具（三大规律+五大范畴+辩证思维方法）进行系统分析</li>
+              <li>体现"理论分析→实践检验→重新认识"的完整闭环</li>
+              <li>完成路线图最终交付物：一篇不少于 2000 字的辩证分析报告</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>12.1 报告选题指南</h3>
+          <div class="method">
+            <span class="label">选题要求与方向参考</span>
+            <ul class="clean">
+              <li>选择一个你真正关心的主题——不是"为了交作业"选的题目</li>
+              <li>主题需要有足够的复杂性——能够同时触发多个规律和范畴</li>
+              <li><b>社会议题类</b>：教育公平、人口结构变化、技术伦理、环境治理</li>
+              <li><b>行业趋势类</b>：AI 对某行业的影响、消费观念变化、媒体形态演变</li>
+              <li><b>哲学命题类</b>：自由与必然、个体与集体、传统与创新</li>
+              <li><b>个人议题类</b>：你的职业方向、一个长期困扰你的认知问题</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section" id="m12-2">
+          <h3>12.2 报告结构模板</h3>
+          <p>报告应包含以下五个部分：</p>
+
+          <div class="method">
+            <span class="label">第一部分：问题界定（约 300 字）</span>
+            <ul class="clean">
+              <li>你要分析的是什么问题？为什么选这个问题？</li>
+              <li>这个问题的复杂性体现在哪里？（为什么值得辩证分析？）</li>
+              <li>你对这个问题当前的初步认识是什么？（作为"正题"，后面会被否定和重构）</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第二部分：矛盾识别（约 500 字）</span>
+            <ul class="clean">
+              <li>主要矛盾是什么？矛盾双方是谁？</li>
+              <li>矛盾双方的同一性（相互依存、转化条件）</li>
+              <li>矛盾双方的斗争性</li>
+              <li>有哪些次要矛盾？它们与主要矛盾的关系？</li>
+              <li>矛盾的主要方面是什么？当前事物的性质由什么决定？</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第三部分：规律运用（约 600 字）</span>
+            <ul class="clean">
+              <li><b>质量互变</b>：当前处于量变还是质变阶段？"度"的边界在哪里？质变会形成什么新质态？</li>
+              <li><b>否定之否定</b>：经历了什么肯定阶段？是否处于否定阶段？第二次否定可能形成什么新形态？与初始状态有何"螺旋上升"关系？</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第四部分：范畴深化与趋势判断（约 400 字）</span>
+            <ul class="clean">
+              <li>用五大范畴中至少 3 个进行深化分析（原因与结果 / 必然与偶然 / 可能与现实 / 内容与形式 / 现象与本质）</li>
+              <li>综合判断：这个问题的发展趋势是什么？</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第五部分：认知更新（约 200 字+）</span>
+            <ul class="clean">
+              <li>经过分析，你对这个问题的认识发生了什么变化？</li>
+              <li>你最初的认知（第一部分写的"正题"）如何被分析过程否定？</li>
+              <li>你现在达到了什么新认识（"合题"）？比最初认知"高"在哪里？</li>
+              <li>是否还有进一步深化的问题？（承认认识的无限性）</li>
+            </ul>
+          </div>
+
+          <div class="diagram-box">
+            <div class="mermaid">
+graph TB
+    P1["① 问题界定<br/>正题·初步认识"] --> P2["② 矛盾识别<br/>对立统一规律"]
+    P2 --> P3["③ 规律运用<br/>质量互变 + 否定之否定"]
+    P3 --> P4["④ 范畴深化与趋势判断<br/>五大范畴（≥3个）"]
+    P4 --> P5["⑤ 认知更新<br/>合题·重新认识"]
+    P1 -.->|"第一部分的正题被分析过程否定<br/>第五部分达到更高合题"| P5
+            </div>
+            <div class="cap">图示：综合辩证分析报告 · 五部分结构（对应 12.2）</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>12.3 写作注意事项</h3>
+          <ol class="clean">
+            <li><b>不要变成"术语堆砌"</b>——不是为了用辩证法术语而用，是因为分析需要才用。</li>
+            <li><b>保持分析的具体性</b>——不要写"事物是普遍联系的"这种空洞命题，要写"A 因素和 B 因素通过 C 机制相互影响"。</li>
+            <li><b>体现你的思考过程</b>——不是给出"正确答案"，而是展示你如何用辩证法工具一步步推进分析。</li>
+            <li><b>诚实面对局限</b>——如果某个规律或范畴在分析中不太好用，说明为什么不好用。</li>
+            <li><b>回溯前序产出</b>——报告应能回顾和引用前面模块的产出，体现整体性和积累性。</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M12（最终交付物）</div>
+          <p><b>任务：</b>完成一篇辩证分析报告（不少于 2000 字），作为本路线图的最终交付物。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>按 12.2 的五部分结构组织</li>
+            <li>至少运用三大规律中的全部 3 个 + 五大范畴中的至少 3 个</li>
+            <li>至少运用 1 种辩证思维方法</li>
+            <li>体现"理论分析→实践检验→重新认识"的完整闭环（第五部分的"认知更新"）</li>
+            <li>回溯引用至少 2 个前序模块的产出</li>
+            <li>全文不少于 2000 字</li>
+          </ul>
+          <div class="selfcheck" style="margin-top:14px;">
+            <div class="sc-title">完成后自查</div>
+            <ol class="clean">
+              <li>我是否真的在用辩证法分析，还是在用辩证法术语包装形而上学的结论？</li>
+              <li>我的分析是否产生了新的认识——还是只是把已知结论换了一种说法？</li>
+              <li>如果让一个不懂辩证法的人读这篇报告，他能从分析过程中学到什么？</li>
+              <li>这篇报告是否让我对所选主题的理解真正深化了？</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Outlook ===== -->
+      <section class="module" id="outlook">
+        <div class="module-head">
+          <span class="mno" style="background:var(--jade)">展望</span>
+          <h2>路线图完成后的展望</h2>
+        </div>
+
+        <div class="callout">
+          <div class="tag">这不是终点</div>
+          <p>完成 M12 后，你已经走完了"理论→实践→重新认识"的完整辩证循环。但：</p>
+          <ol class="clean">
+            <li><b>你获得的不是"答案"，而是"思维能力"</b>——辩证法不能告诉你具体问题的具体答案，但能给你一套系统化的分析工具。</li>
+            <li><b>你的认知进入了新的"正题"阶段</b>——当前的认识是你下一次辩证发展的起点，未来会在新的实践中被否定和重构。</li>
+            <li><b>辩证法已经内化为思维习惯</b>——如果你在日常思考中开始"自动"看到矛盾、看到发展、看到联系，说明它已从"理论知识"变成"思维能力"。</li>
+            <li><b>持续精进的方向</b>：精读更多原典（《矛盾论》《实践论》）；将辩证法应用于你的专业领域；关注辩证法的当代发展（系统论、复杂性科学）；在实践中不断检验和修正辩证认知。</li>
+          </ol>
+          <p style="border-top:1px solid var(--line);padding-top:12px;margin-top:12px;font-weight:600;color:var(--vermilion);">辩证法的最高境界不是"懂了辩证法"，而是"忘记了辩证法"——因为它已经成为你看世界的自然方式。</p>
+        </div>
+      </section>
+
+      <div class="footer">
+        来源：本地 Markdown 文档《辩证法教材_第三阶段_改造重新认识》（作者已授权）<br/>
+        本页由正文一键可视化生成 · 朱砂 / 黛青学术配色 · 含 2 张 Mermaid 示意图
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  if (window.mermaid){
+    mermaid.initialize({startOnLoad:true, theme:'neutral',
+      themeVariables:{primaryColor:'#fbeee8',lineColor:'#b8472e',fontSize:'15px'}});
+  }
+</script>
+</body>
+</html>

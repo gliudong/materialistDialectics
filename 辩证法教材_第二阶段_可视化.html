@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>辩证法教材 · 第二阶段：实践理论（可视化）</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{
+    --ink:#23211e;
+    --ink-soft:#4a463f;
+    --paper:#faf6ef;
+    --paper-2:#f3ece0;
+    --card:#fffdf9;
+    --line:#e4d9c7;
+    --vermilion:#b8472e;     /* 朱砂 */
+    --vermilion-soft:#d98c79;
+    --jade:#2f6b63;          /* 黛青 */
+    --gold:#b8893a;
+    --shadow:0 6px 24px rgba(60,40,20,.08);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.85;
+    font-size:16px;
+  }
+  h1,h2,h3,h4{
+    font-family:"Noto Serif SC","Songti SC","PingFang SC",serif;
+    color:var(--ink);
+    line-height:1.4;
+  }
+  /* ===== Layout ===== */
+  .layout{display:flex;max-width:1280px;margin:0 auto;}
+  /* ===== Sidebar ===== */
+  .sidebar{
+    width:240px;flex:0 0 240px;
+    position:sticky;top:0;align-self:flex-start;
+    height:100vh;overflow-y:auto;
+    padding:28px 18px;
+    border-right:1px solid var(--line);
+    background:linear-gradient(180deg,#fdfaf4,#f6efe3);
+  }
+  .sidebar .brand{
+    font-family:"Noto Serif SC",serif;
+    font-size:13px;letter-spacing:2px;color:var(--vermilion);
+    font-weight:700;margin-bottom:4px;
+  }
+  .sidebar .brand-sub{font-size:12px;color:var(--ink-soft);margin-bottom:22px;}
+  .nav-group{font-size:12px;color:#9a8f7d;margin:18px 0 8px;letter-spacing:1px;font-weight:600;}
+  .sidebar a{
+    display:block;padding:7px 12px;margin:2px 0;
+    color:var(--ink-soft);text-decoration:none;border-radius:8px;
+    font-size:14px;border-left:3px solid transparent;transition:.15s;
+  }
+  .sidebar a:hover{background:var(--paper-2);color:var(--ink);}
+  .sidebar a.active{background:#fbeee8;border-left-color:var(--vermilion);color:var(--vermilion);font-weight:600;}
+  .sidebar a.sub{padding-left:26px;font-size:13px;color:#8a8275;}
+  /* ===== Main ===== */
+  .main{flex:1;min-width:0;padding:0 0 80px;}
+  .hero{
+    padding:54px 48px 38px;
+    background:
+      radial-gradient(1100px 300px at 80% -10%, rgba(184,71,46,.10), transparent),
+      linear-gradient(180deg,#fffdf9, var(--paper));
+    border-bottom:1px solid var(--line);
+  }
+  .hero .kicker{font-size:13px;letter-spacing:3px;color:var(--vermilion);font-weight:700;}
+  .hero h1{font-size:34px;margin:8px 0 6px;letter-spacing:1px;}
+  .hero .lead{font-size:15px;color:var(--ink-soft);max-width:760px;}
+  .phase-tag{
+    display:inline-block;margin-top:16px;padding:6px 14px;border-radius:999px;
+    background:#fbeee8;color:var(--vermilion);font-size:13px;font-weight:600;
+    border:1px solid #f0d5cb;
+  }
+  .content{padding:0 48px;}
+  /* ===== Callout ===== */
+  .callout{
+    background:var(--card);border:1px solid var(--line);border-left:5px solid var(--jade);
+    border-radius:12px;padding:20px 24px;margin:28px 0;box-shadow:var(--shadow);
+  }
+  .callout .tag{font-size:12px;font-weight:700;color:var(--jade);letter-spacing:1px;margin-bottom:6px;}
+  .callout p{margin:6px 0;color:var(--ink-soft);}
+  /* ===== Module block ===== */
+  .module{
+    margin-top:46px;padding-top:26px;border-top:1px dashed var(--line);
+  }
+  .module-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .module-head .mno{
+    font-family:"Noto Serif SC",serif;font-size:22px;font-weight:700;color:#fff;
+    background:var(--vermilion);padding:6px 16px;border-radius:10px;box-shadow:var(--shadow);
+  }
+  .module-head h2{font-size:25px;margin:0;}
+  .module-meta{font-size:13px;color:#a89c88;margin-left:auto;}
+  .section{margin:26px 0;}
+  .section h3{
+    font-size:19px;margin:0 0 12px;padding-left:13px;
+    border-left:4px solid var(--gold);
+  }
+  .section h4{font-size:16px;color:var(--vermilion);margin:18px 0 8px;}
+  /* ===== Goals card ===== */
+  .goals{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 22px;margin:8px 0 4px;box-shadow:var(--shadow);
+  }
+  .goals ul{margin:0;padding-left:20px;}
+  .goals li{margin:6px 0;}
+  /* ===== Method card ===== */
+  .method{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 24px;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .method .label{
+    display:inline-block;font-size:12px;font-weight:700;color:var(--jade);
+    background:#eaf3f1;border:1px solid #cfe6e1;border-radius:6px;padding:2px 10px;margin-bottom:8px;
+  }
+  .def-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+  .def-pair .d{background:var(--paper-2);border-radius:10px;padding:12px 14px;font-size:14.5px;}
+  .def-pair .d b{color:var(--vermilion);}
+  /* ===== Lists ===== */
+  ul.clean,ol.clean{margin:8px 0;padding-left:22px;}
+  ul.clean li,ol.clean li{margin:7px 0;}
+  .hint{font-size:13.5px;color:#8a8073;font-style:italic;}
+  /* ===== Step flow ===== */
+  .steps{counter-reset:s;margin:14px 0;padding:0;list-style:none;}
+  .steps li{
+    counter-increment:s;position:relative;padding:12px 16px 12px 52px;margin:10px 0;
+    background:var(--paper-2);border-radius:10px;border:1px solid var(--line);
+  }
+  .steps li::before{
+    content:counter(s);position:absolute;left:14px;top:12px;
+    width:26px;height:26px;border-radius:50%;background:var(--vermilion);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+    font-family:"Noto Serif SC",serif;
+  }
+  /* ===== Case grid (M7) ===== */
+  .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0;}
+  .case{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+    box-shadow:var(--shadow);
+  }
+  .case .ct{font-weight:700;color:var(--vermilion);font-size:15px;margin-bottom:8px;
+    border-bottom:1px solid var(--line);padding-bottom:6px;}
+  .case ul{margin:6px 0;padding-left:18px;font-size:14.5px;}
+  .case ul li{margin:5px 0;}
+  .case.sample{background:linear-gradient(180deg,#fff7f2,#fdeee6);border-color:#f3d3c6;}
+  .case.sample .ct{color:var(--gold);}
+  /* ===== Topic chips (M7.3) ===== */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+  .chip{
+    background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:14px;box-shadow:var(--shadow);
+  }
+  .chip b{color:var(--jade);}
+  /* ===== Table ===== */
+  .tbl-wrap{overflow-x:auto;margin:14px 0;}
+  table.styled{
+    width:100%;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
+    font-size:14.5px;
+  }
+  table.styled thead th{
+    background:var(--ink);color:#fdf6ec;text-align:left;padding:12px 16px;font-weight:600;
+    font-family:"Noto Serif SC",serif;letter-spacing:.5px;
+  }
+  table.styled td{padding:11px 16px;border-top:1px solid var(--line);vertical-align:top;}
+  table.styled tbody tr:nth-child(even){background:#fbf6ee;}
+  table.styled b{color:var(--vermilion);}
+  /* ===== Mermaid ===== */
+  .diagram-box{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;margin:16px 0;box-shadow:var(--shadow);text-align:center;
+  }
+  .diagram-box .cap{font-size:13px;color:var(--ink-soft);margin-top:8px;}
+  .mermaid{background:transparent;}
+  /* ===== Task card ===== */
+  .task{
+    background:linear-gradient(135deg,#fffdf9,#fbf2ea);
+    border:1px solid #f0d9cd;border-left:5px solid var(--gold);
+    border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .task .t-title{font-weight:700;color:var(--gold);font-size:15px;margin-bottom:8px;}
+  /* ===== Checklist ===== */
+  .checklist{list-style:none;padding:0;margin:10px 0;}
+  .checklist li{
+    display:flex;gap:12px;align-items:flex-start;padding:11px 16px;margin:8px 0;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);
+  }
+  .checklist .box{
+    flex:0 0 22px;width:22px;height:22px;border:2px solid var(--vermilion);border-radius:6px;
+    margin-top:2px;position:relative;
+  }
+  .selfcheck{background:#eef4f2;border:1px solid #cfe6df;border-radius:12px;padding:16px 20px;margin:14px 0;}
+  .selfcheck .sc-title{font-weight:700;color:var(--jade);margin-bottom:8px;}
+  /* ===== Footer ===== */
+  .footer{
+    margin:50px 48px 0;padding:22px 0 0;border-top:1px solid var(--line);
+    font-size:13px;color:#a89c88;text-align:center;
+  }
+  /* ===== Responsive ===== */
+  @media(max-width:900px){
+    .layout{flex-direction:column;}
+    .sidebar{position:static;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);}
+    .sidebar a.sub{display:none;}
+    .content,.hero,.footer{padding-left:22px;padding-right:22px;}
+    .def-pair,.case-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="brand">辩证法教材</div>
+    <div class="brand-sub">第二阶段 · 实践理论</div>
+    <div class="nav-group">阶段概览</div>
+    <a href="#top">阶段目标</a>
+    <div class="nav-group">核心模块</div>
+    <a href="#m6">M6 辩证思维方法训练</a>
+    <a href="#m6-1" class="sub">· 归纳与演绎</a>
+    <a href="#m6-2" class="sub">· 分析与综合</a>
+    <a href="#m6-3" class="sub">· 抽象到具体</a>
+    <a href="#m6-4" class="sub">· 逻辑与历史</a>
+    <a href="#m6-5" class="sub">· 五步循环演示</a>
+    <a href="#m7">M7 分析社会现象</a>
+    <a href="#m8">M8 分析个人决策</a>
+    <a href="#m9">M9 日常思维运用</a>
+    <div class="nav-group">阶段收尾</div>
+    <a href="#buffer">缓冲 · 待提升清单</a>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="hero" id="top">
+      <div class="kicker">DIALECTICAL MATERIALISM · 实践篇</div>
+      <h1>辩证法教材 — 第二阶段：实践理论</h1>
+      <p class="lead">将理论转化为可操作的思维方法，通过大量案例分析练习，建立"辩证思维肌肉记忆"。本阶段核心不是"读"而是"练"——每读一个方法框架后，立即用它分析一个实际问题再继续，产出物比阅读量更重要。</p>
+      <span class="phase-tag">理论学习 → 实践理论 → 通过理论改造 / 重新认识（合题）</span>
+    </header>
+
+    <div class="content">
+
+      <!-- ===== M6 ===== -->
+      <section class="module" id="m6">
+        <div class="module-head">
+          <span class="mno">M6</span>
+          <h2>辩证思维方法训练</h2>
+          <span class="module-meta">四组辩证思维方法 · 5 段式结构</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>掌握四组辩证思维方法的基本操作步骤</li>
+              <li>能区分每对方法的"辩证统一"与"简单对立"</li>
+              <li>能用"分析→综合"和"抽象→具体"两条路径分析同一问题并对比差异</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section" id="m6-1">
+          <h3>6.1 归纳与演绎的辩证统一</h3>
+          <div class="def-pair">
+            <div class="d"><b>归纳</b>：从个别事实中概括出一般性结论。从"这只乌鸦是黑的、那只也是……"推出"乌鸦是黑的"。</div>
+            <div class="d"><b>演绎</b>：从一般性前提推导出个别结论。从"所有人都会死"推出"苏格拉底会死"。</div>
+          </div>
+          <div class="method">
+            <span class="label">辩证统一关系</span>
+            <ol class="clean">
+              <li><b>归纳依赖演绎</b>：归纳得出的一般结论需要演绎来验证和运用——"下一只看到的乌鸦应该也是黑的"。</li>
+              <li><b>演绎依赖归纳</b>：演绎的前提来自归纳——"所有人都会死"是归纳大量个体案例得出的。</li>
+              <li><b>互相渗透</b>：归纳中有演绎的指导，演绎中有归纳的补充，二者交织进行。</li>
+            </ol>
+            <p class="hint">形而上学错误：把归纳和演绎割裂——要么只有归纳才可靠（经验主义），要么只有演绎才可靠（理性主义）。</p>
+            <p><b>操作步骤——归纳演绎交替法：</b></p>
+            <ol class="steps">
+              <li>观察个别现象（归纳起点）</li>
+              <li>提出初步假设（归纳结论）</li>
+              <li>用假设推导预测（演绎运用）</li>
+              <li>检验预测是否符合新观察（归纳验证）</li>
+              <li>修正假设，循环推进</li>
+            </ol>
+            <p class="hint">练习示例：观察身边 3 个人的学习习惯 → 归纳"高效学习者的共同特征" → 演绎推导"如果我做这些事，效率应提高" → 实践检验 → 修正结论。</p>
+          </div>
+        </div>
+
+        <div class="section" id="m6-2">
+          <h3>6.2 分析与综合的辩证统一</h3>
+          <div class="def-pair">
+            <div class="d"><b>分析</b>：把整体分解为部分，分别认识各个部分。</div>
+            <div class="d"><b>综合</b>：把各部分的认识重新组合，形成对整体的认识。</div>
+          </div>
+          <div class="method">
+            <span class="label">辩证统一关系</span>
+            <ol class="clean">
+              <li><b>分析是综合的基础</b>：没有对部分的深入认识，综合只能是空洞的拼凑。</li>
+              <li><b>综合是分析的目的</b>：分析不是为了拆碎，是为了更好理解整体。</li>
+              <li><b>分析与综合互相渗透</b>：分析中有综合的背景框架，综合中有分析的关系审视。</li>
+            </ol>
+            <p><b>操作步骤——分析综合交替法：</b></p>
+            <ol class="steps">
+              <li>整体感知：先对事物有大致整体印象</li>
+              <li>分析拆解：分解为几个关键部分 / 要素 / 层面</li>
+              <li>逐个深入：对每个部分深入分析（是什么？如何运作？）</li>
+              <li>关系梳理：分析各部分间关系（因果、层次、反馈）</li>
+              <li>综合重构：整合对部分的认识，形成整体新认识</li>
+              <li>循环深化：基于新认识，可能需重新分析某部分</li>
+            </ol>
+            <p class="hint">关键理解：综合不是"把碎片粘回去"，而是在更高层次理解整体——你看到了部分之间的"关系"和"结构"，这是单独分析每个部分时看不到的。</p>
+          </div>
+        </div>
+
+        <div class="section" id="m6-3">
+          <h3>6.3 从抽象上升到具体</h3>
+          <p>这是马克思在《资本论》中使用的方法，也是辩证思维最高级的方法之一。</p>
+          <div class="def-pair">
+            <div class="d"><b>抽象</b>：对事物某一方面的简单规定。如"商品是用于交换的劳动产品"——只抓住"交换价值"一个方面。</div>
+            <div class="d"><b>具体</b>：对事物多方面规定的综合统一。如理解了商品的使用价值、交换价值、价值、剩余价值……综合起来达到"具体"认识。</div>
+          </div>
+          <div class="method">
+            <span class="label">从抽象上升到具体的过程</span>
+            <ol class="steps">
+              <li>起点：最简单、最抽象的规定（如"商品"这个概念）</li>
+              <li>中间环节：逐步加入更多规定，每步更具体（商品→货币→资本→剩余价值→利润→地租……）</li>
+              <li>终点：达到对事物整体的、丰富的、具体的认识</li>
+            </ol>
+            <p><b>关键理解：</b></p>
+            <ul class="clean">
+              <li>"具体"不是感性的具体（看到的东西），而是"理性的具体"——通过思维把握到的整体。</li>
+              <li>不是从简单到复杂的堆砌，而是按事物内部结构的逻辑展开。</li>
+              <li>每一步"上升"都是辩证的否定——新规定否定旧规定的片面性，保留其合理内核。</li>
+            </ul>
+            <p><b>操作步骤：</b></p>
+            <ol class="steps">
+              <li>找到对象最简单、最基本的抽象规定</li>
+              <li>分析规定内部包含的矛盾（商品含使用价值与交换价值的矛盾）</li>
+              <li>分析矛盾如何展开（交换价值发展为货币）</li>
+              <li>逐步引入更高层次规定（货币发展为资本）</li>
+              <li>最终形成对整体的系统认识</li>
+            </ol>
+            <div class="case sample">
+              <div class="ct">日常化平行示例 · 认识"一个高效团队"</div>
+              <ul>
+                <li><b>最抽象</b>："团队 = 一群人一起做事"（正确但空洞，无法区分高效团队与乌合之众）</li>
+                <li><b>引入矛盾</b>：分工提高效率但制造壁垒，协作打破壁垒但增加沟通成本 → "有分工协作结构的一群人"</li>
+                <li><b>矛盾展开</b>：分工协作需规则维系 → "在共同规则下分工协作的一群人"</li>
+                <li><b>继续上升</b>：规则只能约束行为 → 引入"共同目标"</li>
+                <li><b>达到理性的具体</b>：引入"文化认同" → 共同目标·规则·分工协作·文化认同的多重规定统一体</li>
+              </ul>
+              <p class="hint">第一眼看到的团队是"感性的具体"；经分析重建后的认识才是"理性的具体"。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" id="m6-4">
+          <h3>6.4 逻辑与历史统一</h3>
+          <div class="def-pair">
+            <div class="d"><b>逻辑的方法</b>：用概念、判断、推理把握事物发展的内在规律。</div>
+            <div class="d"><b>历史的方法</b>：按事物发展的时间顺序来认识事物。</div>
+          </div>
+          <div class="method">
+            <span class="label">辩证统一关系</span>
+            <ol class="clean">
+              <li><b>逻辑是"修正过"的历史</b>：对历史发展"去粗取精"，抓本质规律，舍偶然细节。</li>
+              <li><b>历史是逻辑的基础</b>：逻辑推演顺序应与历史实际顺序大体一致（先有商品交换才有货币）。</li>
+              <li><b>不完全一致</b>：历史常有曲折倒退跳跃，逻辑只抓"典型形态"的发展线索。</li>
+            </ol>
+            <p><b>操作要点：</b></p>
+            <ul class="clean">
+              <li>认识事物时既梳理历史演变（怎么来的），也把握逻辑结构（内在规律）</li>
+              <li>二者互为参照：历史提供素材和验证，逻辑提供框架和方向</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section" id="m6-5">
+          <h3>6.5 完整方法演示：归纳演绎交替法五步循环</h3>
+          <p>下面用具体问题完整演示 6.1 的"归纳演绎交替法"，供模仿（思考练习第 1 题用同一问题，可对比）。</p>
+          <div class="task">
+            <div class="t-title">问题：为什么有些人能坚持学习，而有些人不能？</div>
+          </div>
+          <ol class="steps">
+            <li><b>观察个别现象（归纳起点）</b>：案例 A 早起学英语坚持两年（学习与咖啡绑定）；案例 B 健身卡三年去不到十次（需专门安排时间）；案例 C 每天写 500 字出专栏（有读者群监督）；案例 D 多次立志读书半途而废（目标模糊）。</li>
+            <li><b>提出初步假设（归纳结论）</b>："能坚持的人有外部约束（咖啡仪式、读者监督），不能坚持的人只有内部动机。"</li>
+            <li><b>用假设推导预测（演绎运用）</b>：若假设成立，则原本坚持不了的人，加上外部约束（公开承诺、打卡群、学习搭子）应能坚持。</li>
+            <li><b>检验预测（归纳验证）</b>：案例 E 加写作打卡群坚持 3 个月——成立；案例 F 也加群，两周后退群——失败。</li>
+            <li><b>修正假设，循环推进</b>：失败暴露片面性——外部约束不是充分条件。案例 F 退群因群内他人水平远高于他、对比产生挫败。修正为："外部约束带来的反馈须是正向（激励）而非负向（挫败），且与当前水平匹配。"——保留原假设合理内核（外部约束重要），否定其片面性（有约束就行）。一轮扬弃完成。</li>
+          </ol>
+          <p class="hint">演示要点：若只归纳不做演绎检验，第 2 步的错误假设会被当成"结论"接受；正是演绎推导的预测在新案例失败，才暴露假设片面性。归纳与演绎相互纠错、循环上升。</p>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M6</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>方法</th><th>核心操作</th><th>与对立面的辩证关系</th></tr></thead>
+              <tbody>
+                <tr><td><b>归纳</b></td><td>从个别到一般</td><td>依赖演绎验证，演绎依赖归纳提供前提</td></tr>
+                <tr><td><b>演绎</b></td><td>从一般到个别</td><td>依赖归纳补充，归纳依赖演绎指导</td></tr>
+                <tr><td><b>分析</b></td><td>从整体到部分</td><td>是综合的基础，综合是分析的目的</td></tr>
+                <tr><td><b>综合</b></td><td>从部分到整体</td><td>大于部分之和，看到关系和结构</td></tr>
+                <tr><td><b>抽象→具体</b></td><td>从简单规定到系统认识</td><td>每步上升是辩证否定，保留合理内核</td></tr>
+                <tr><td><b>逻辑与历史</b></td><td>概念推演与时间顺序统一</td><td>逻辑是修正过的历史，历史是逻辑的基础</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M6</h3>
+          <ol class="clean">
+            <li>用"归纳演绎交替法"分析一个你观察到的现象（如"为什么有些人能坚持学习"），完成 5 步循环。</li>
+            <li>用"分析综合法"拆解一个问题（如"为什么项目推进缓慢"），先分解 3–5 个部分，逐一分析，再综合重构。</li>
+            <li>找一个你熟悉的领域，尝试用"从抽象上升到具体"的方法，从最简单概念出发逐步引入更复杂规定。</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M6</div>
+          <p><b>任务：</b>针对同一问题，分别用"分析→综合"和"抽象→具体"两条路径各做一次分析，写出两份过程并对比差异。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>选一个你关注的问题（工作、社会、个人均可）</li>
+            <li>路径一（分析→综合）：记录整体感知→分解要素→逐个分析→关系梳理→综合重构</li>
+            <li>路径二（抽象→具体）：找到最简单抽象规定→分析内在矛盾→逐步引入更高规定→达到系统认识</li>
+            <li>对比两份分析：看到的东西有何不同？各自优劣势？</li>
+            <li>全文不少于 1000 字</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M7 ===== -->
+      <section class="module" id="m7">
+        <div class="module-head">
+          <span class="mno">M7</span>
+          <h2>用辩证法分析社会现象</h2>
+          <span class="module-meta">对立统一 · 质量互变 · 否定之否定 · 五大范畴</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能用对立统一规律识别社会议题中的矛盾双方</li>
+              <li>能用质量互变规律判断社会议题的发展阶段</li>
+              <li>能用否定之否定规律预判社会议题的趋势</li>
+              <li>完成 3 篇独立的社会现象辩证分析</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>7.1 辩证分析社会现象的基本框架</h3>
+          <p>分析一个社会现象，按以下步骤推进：</p>
+          <div class="diagram-box">
+            <div class="mermaid">
+graph TB
+    S1["第一步 · 矛盾识别<br/>（对立统一规律）<br/>找主要矛盾/主要方面"] --> S2["第二步 · 阶段判断<br/>（质量互变规律）<br/>量变 or 质变？度的临界点？"]
+    S2 --> S3["第三步 · 趋势预判<br/>（否定之否定规律）<br/>肯定→否定→更高形态"]
+    S3 --> S4["第四步 · 范畴深化<br/>（五大范畴）<br/>因果·必然偶然·可能现实·内容形式·现象本质"]
+    S4 -.->|"四步循环深化"| S1
+            </div>
+            <div class="cap">图示：社会现象辩证分析 · 四步框架（对应 7.1）</div>
+          </div>
+
+          <div class="method">
+            <span class="label">第一步 · 矛盾识别（对立统一规律）</span>
+            <ul class="clean">
+              <li>这个现象包含什么主要矛盾？（找到对立双方）</li>
+              <li>矛盾双方如何同一？（相互依存、互为条件）</li>
+              <li>矛盾双方如何斗争？（相互排斥、此消彼长）</li>
+              <li>什么是主要矛盾 / 次要矛盾？</li>
+              <li>矛盾的主要方面是什么？（决定现象当前性质的方向）</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第二步 · 阶段判断（质量互变规律）</span>
+            <ul class="clean">
+              <li>当前处于什么阶段？量变积累还是质变发生？</li>
+              <li>若量变阶段，距"度"的界限多远？有无逼近质变的临界点？</li>
+              <li>若质变阶段，质变以什么形式发生？（渐进？突发？）</li>
+              <li>质变后进入新阶段，新的量变在什么基础上展开？</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第三步 · 趋势预判（否定之否定规律）</span>
+            <ul class="clean">
+              <li>这个现象经历了什么"肯定"阶段？</li>
+              <li>当前是否处于"否定"阶段？否定力量来自哪里？</li>
+              <li>若经历第二次否定，会形成什么新形态？</li>
+              <li>新形态与初始状态有何"螺旋上升"关系？</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">第四步 · 范畴辅助（五大范畴深化）</span>
+            <ul class="clean">
+              <li>原因与结果：什么原因导致？又产生什么结果？</li>
+              <li>必然与偶然：什么是必然趋势？什么是偶然因素？</li>
+              <li>可能与现实：现实中有哪些可能性？哪个最可能变现实？</li>
+              <li>内容与形式：实质内容是什么？以什么形式表现？</li>
+              <li>现象与本质：表面看到什么？背后本质是什么？有无假象？</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>7.2 案例示范：科技发展与就业</h3>
+          <div class="case-grid">
+            <div class="case">
+              <div class="ct">矛盾识别</div>
+              <ul>
+                <li>主要矛盾：技术进步（AI 替代人力）与劳动者就业保障的矛盾</li>
+                <li>同一性：技术进步创造财富→可用于社保与劳动者转型；劳动者掌握新技术→推动技术进一步发展</li>
+                <li>斗争性：AI 替代岗位→部分失业；劳动者抵制→阻碍技术进步</li>
+                <li>主要方面：技术进步是不可逆转的主要趋势</li>
+              </ul>
+            </div>
+            <div class="case">
+              <div class="ct">阶段判断</div>
+              <ul>
+                <li>当前处于量变积累阶段：AI 在各行业逐步渗透，替代率攀升但未引起就业结构根本质变</li>
+                <li>尚未到"度"的临界点——当替代率超某阈值（如 30% 知识工作可被 AI 完成；<i>该数字仅为说明"度"的示意值，非学术预测数据</i>），可能引发质变</li>
+                <li>新质变后：可能出现人机协作岗、AI 伦理监督岗等，在新质基础上开始新量变</li>
+              </ul>
+            </div>
+            <div class="case">
+              <div class="ct">趋势预判</div>
+              <ul>
+                <li>肯定阶段：传统就业模式（人直接从事生产和服务）</li>
+                <li>否定阶段：AI 替代传统岗位，部分劳动者被迫转型</li>
+                <li>否定之否定：形成"人 + AI 协作"新就业形态——在更高层次实现充分就业</li>
+                <li>螺旋特征：保留"人人有工作"合理内核，但以人机协作为内容</li>
+              </ul>
+            </div>
+            <div class="case">
+              <div class="ct">范畴深化</div>
+              <ul>
+                <li>必然与偶然：AI 替代就业是必然，但具体哪些岗位先被替代有偶然性</li>
+                <li>可能与现实：可能出现"AI 加剧不平等"（坏）与"AI 解放人类劳动"（好），取决于制度设计</li>
+                <li>现象与本质：表面"AI 抢走工作"，本质是生产力发展到新阶段，旧生产关系需调整</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>7.3 备选议题清单</h3>
+          <p>若不知选什么社会现象，可从以下议题中选 3 个：</p>
+          <div class="chips">
+            <span class="chip"><b>城市化与乡村衰落</b>：人口聚集 vs 人口流失</span>
+            <span class="chip"><b>全球化与逆全球化</b>：贸易开放 vs 保护主义</span>
+            <span class="chip"><b>平台经济与劳动者权益</b>：灵活就业 vs 社保缺失</span>
+            <span class="chip"><b>社交媒体与深度思考</b>：信息民主化 vs 注意力碎片化</span>
+            <span class="chip"><b>教育内卷与素质教育</b>：应试竞争 vs 全面发展</span>
+            <span class="chip"><b>老龄化社会与创新活力</b>：人口结构 vs 创新需求</span>
+            <span class="chip"><b>环境保护与经济发展</b>：生态可持续 vs 增长压力</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M7</div>
+          <p><b>任务：</b>完成 3 篇社会现象辩证分析短文（每篇 ≥ 1000 字），每篇至少运用 2 个规律或范畴。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>从 7.3 清单选 3 个，或自选 3 个社会热点</li>
+            <li>每篇按"矛盾识别→阶段判断→趋势预判→范畴深化"四步框架推进</li>
+            <li>每篇至少运用 2 个规律（三大规律中）或 2 个范畴（五大范畴中）</li>
+            <li>3 篇不能都只用同一组规律 / 范畴——需有意识覆盖不同规律与范畴</li>
+            <li>每篇结尾给出一句"辩证判断"——说明矛盾发展方向，而非简单好 / 坏评价</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M8 ===== -->
+      <section class="module" id="m8">
+        <div class="module-head">
+          <span class="mno">M8</span>
+          <h2>用辩证法分析个人决策与成长</h2>
+          <span class="module-meta">矛盾分析法 · 度的标定 · 螺旋上升 · 成败辩证</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能在个人决策中识别主要矛盾和次要矛盾</li>
+              <li>能用"度"的概念把握决策的分寸感</li>
+              <li>能用否定之否定规律理解成长中的反复与螺旋上升</li>
+              <li>完成一份个人决策辩证复盘</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>8.1 个人决策中的矛盾分析法</h3>
+          <p><b>步骤一：列出所有矛盾</b><br/>如"要不要换工作"可能包含：现状安稳 vs 新机会风险 / 收入提升 vs 生活节奏变化 / 职业发展 vs 家庭稳定 / 个人兴趣 vs 市场需求。</p>
+          <div class="method">
+            <span class="label">矛盾分析法四步</span>
+            <ol class="steps">
+              <li><b>分清主次</b>：哪对矛盾是主要矛盾（起决定作用）？哪些是次要矛盾？主要矛盾中哪一方是主要方面？</li>
+              <li><b>分析矛盾转化条件</b>：主次矛盾在什么条件下转化？矛盾双方在什么条件下向对方转化？（安于现状何时变必须改变？冒险何时成最优选择？）</li>
+              <li><b>制定辩证策略</b>：抓住主要矛盾解决核心；不忽视次要矛盾但放合理位置；创造条件促矛盾向有利方向转化；保留弹性应对动态变化。</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>8.2 用"度"把握决策分寸</h3>
+          <p>很多决策不是"做不做"，而是"做到什么程度"——这就是"度"的问题。</p>
+          <div class="method">
+            <span class="label">操作方法</span>
+            <ol class="steps">
+              <li>确定决策的"质"——要保持什么基本性质不变？（如换工作不换行业）</li>
+              <li>确定"度"的边界——什么范围内量变不引起质变？（学新技能投入多少时间适度？超过多少影响现有工作？冒险资金在什么范围可承受？）</li>
+              <li>找到"最佳度"——不是度内任意位置，而是"恰到好处"的点</li>
+              <li>时刻监控——量变接近"度"的边界时及时调整</li>
+            </ol>
+            <p class="hint">生活实例：健身——适度训练增强体质（量变在度内），过度训练导致受伤（突破度引起质变）；"度"的边界因人而异，需自身标定。</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>8.3 用否定之否定理解成长反复</h3>
+          <p>成长不是直线上升，而是螺旋上升。理解这一点可避免在反复和挫折中丧失信心。</p>
+          <div class="method">
+            <span class="label">成长的否定之否定模式</span>
+            <ol class="steps">
+              <li><b>肯定阶段</b>：初始状态（初学者的热情但无知）</li>
+              <li><b>第一次否定</b>：遇到困难，初始状态被否定（热情消退，感到什么都不懂）</li>
+              <li><b>否定之否定</b>：在更高层次上回归（不是无知的热切，而是建立在能力经验上的信心）</li>
+            </ol>
+            <p><b>关键认知：</b></p>
+            <ul class="clean">
+              <li>中间的"否定"阶段不是失败，是成长必经环节</li>
+              <li>"回到起点"的感觉正常——但实际是螺旋上升，非原地踏步</li>
+              <li>每次循环后，你的"起点"都比上次更高</li>
+              <li>不要把"反复"误认为"没有进步"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>8.4 辩证看待"成功"与"失败"</h3>
+          <div class="method">
+            <span class="label">辩证理解</span>
+            <ol class="clean">
+              <li>成功与失败是相互依存的矛盾：没有失败就没有成功，成功中包含未来失败的因素</li>
+              <li>成功和失败在一定条件下互相转化：
+                <ul class="clean">
+                  <li>成功 → 骄傲 → 失去警惕 → 失败（"祸兮福之所倚"）</li>
+                  <li>失败 → 反思 → 积累经验 → 成功（"福兮祸之所伏"）</li>
+                </ul>
+              </li>
+              <li>真正的"成功"不是消灭失败，而是从失败中不断否定自己、螺旋上升</li>
+              <li>一次失败不等于"质变"——只有持续失败积累到"度"的界限才引起质变（真正放弃）；此前都是量变中的正常波动</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M8</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>工具</th><th>核心操作</th><th>适用场景</th></tr></thead>
+              <tbody>
+                <tr><td><b>矛盾分析法</b></td><td>列出所有矛盾→分清主次→分析转化→制定策略</td><td>多因素决策</td></tr>
+                <tr><td><b>度的标定</b></td><td>确定质→划定边界→找最佳点→监控</td><td>把握分寸</td></tr>
+                <tr><td><b>否定之否定</b></td><td>识别肯定→否定→更高回归的螺旋</td><td>理解成长反复</td></tr>
+                <tr><td><b>成败辩证</b></td><td>认识成败互含互转</td><td>调整心态</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M8</h3>
+          <ol class="clean">
+            <li>拿一个你正犹豫的决策，列出所有矛盾，分主次，分析转化条件。</li>
+            <li>找一个你容易"过度"的领域（工作、健身、社交等），标定你的"度"的边界。</li>
+            <li>回忆学习某项技能的经历，画出"热情→挫折→信心"的螺旋上升曲线。</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M8</div>
+          <p><b>任务：</b>写一份"个人决策辩证复盘"（≥ 1500 字），选取近期重要决策，用辩证法工具全面复盘。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>选取一个近期做过（或正在做）的重要决策</li>
+            <li>用矛盾分析法分析所有矛盾及主次关系</li>
+            <li>用"度"的概念分析决策是否把握分寸</li>
+            <li>用否定之否定规律分析决策后的成长曲线（若有足够时间跨度）</li>
+            <li>辩证看待决策的"成功"或"失败"</li>
+            <li>复盘结尾：若重来，基于辩证分析你会做什么不同选择？为什么？</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M9 ===== -->
+      <section class="module" id="m9">
+        <div class="module-head">
+          <span class="mno">M9</span>
+          <h2>辩证法在日常思维中的运用</h2>
+          <span class="module-meta">既要又要 · 发展眼光 · 两难困境</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能在日常沟通中识别对立统一关系</li>
+              <li>能用发展眼光看人际关系的变化</li>
+              <li>能用矛盾分析法处理工作中的两难困境</li>
+              <li>连续 7 天记录日常辩证思维日记</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>9.1 日常沟通中的对立统一识别</h3>
+          <p><b>"既要…又要…"不是和稀泥</b></p>
+          <p>"既要效率又要质量""既要自由又要秩序""既要个人发展又要团队协作"——若理解对立统一规律，这是对矛盾平衡的辩证把握，而非和稀泥。</p>
+          <div class="method">
+            <span class="label">辩证理解</span>
+            <ul class="clean">
+              <li>"既要 A 又要 B"的前提是承认 A、B 是一对矛盾——确有对立的一面</li>
+              <li>但对立不是不能共存——矛盾双方还有同一性（相互依存、相互转化）</li>
+              <li>"既要又要"不是各打五十大板，而是在具体条件下找矛盾双方的平衡点</li>
+              <li>平衡点不是固定的——条件变了，平衡点也要移动</li>
+            </ul>
+            <p><b>实操方法：</b></p>
+            <ol class="steps">
+              <li>承认矛盾：A 和 B 确实对立，不要假装没有矛盾</li>
+              <li>分析同一性：A 和 B 如何相互依存？（没有效率的质量是空谈，没有质量的效率是浪费）</li>
+              <li>找平衡点：当前条件下，A 和 B 的平衡点在哪里？</li>
+              <li>动态调整：条件变化时，重新寻找新的平衡点</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>9.2 用发展眼光看人际关系变化</h3>
+          <p><b>形而上学看人际关系</b>：一个人"是好人"或"是坏人"，关系"好"或"坏"——固定不变。</p>
+          <div class="method">
+            <span class="label">辩证法看人际关系</span>
+            <ol class="clean">
+              <li>人在变化：性格、能力、立场都在发展中变化，今天的他不是昨天的他</li>
+              <li>关系在变化：处于动态发展过程——亲密→疏远→新的亲密，矛盾→和解→更深理解</li>
+              <li>矛盾是关系发展的动力：朋友间的分歧争论若处理得当，反而推动关系深化</li>
+              <li>不以一次行为定终身：一次矛盾不代表破裂，一次帮助不代表永远可靠——看趋势和主要方面</li>
+            </ol>
+            <p><b>实操要点：</b>看人看趋势不看截面；给关系留出发展空间；在矛盾中看到深化的可能，不要遇矛盾就撤退。</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>9.3 用矛盾分析法处理两难困境</h3>
+          <p>工作中常见的两难：</p>
+          <div class="chips">
+            <span class="chip">赶进度 vs 保质量</span>
+            <span class="chip">客户需求 vs 技术现实</span>
+            <span class="chip">个人成长 vs 团队利益</span>
+            <span class="chip">短期收益 vs 长期战略</span>
+          </div>
+          <div class="method">
+            <span class="label">矛盾分析法处理步骤</span>
+            <ol class="steps">
+              <li><b>确认两难的真实性</b>：是真的矛盾还是假矛盾？（有些"两难"是信息不足导致的虚假对立）</li>
+              <li><b>识别主要矛盾</b>：当前阶段哪个矛盾是主要的？</li>
+              <li><b>分析矛盾的主要方面</b>：当前哪方占主导？是否到转化临界点？</li>
+              <li><b>创造条件促转化</b>：不是消灭一方，而是创造条件让矛盾向有利方向转化（如"赶进度 vs 保质量"通过改进流程、工具、分工让两者同时提升）</li>
+              <li><b>预留弹性</b>：两难通常不会一次解决，需预留调整空间</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M9</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>场景</th><th>辩证工具</th><th>核心操作</th></tr></thead>
+              <tbody>
+                <tr><td><b>"既要又要"</b></td><td>对立统一同一性</td><td>承认矛盾→分析依存→找平衡点→动态调整</td></tr>
+                <tr><td><b>看人看关系</b></td><td>永恒发展观</td><td>看趋势不看截面，留发展空间</td></tr>
+                <tr><td><b>工作两难</b></td><td>矛盾分析法</td><td>确认真实性→识别主次→创造转化条件→预留弹性</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M9</h3>
+          <ol class="clean">
+            <li>找一个常遇到的"既要又要"场景，用 9.1 四步法分析平衡点。</li>
+            <li>回忆一段变化的人际关系，用发展眼光重新理解其"变化轨迹"。</li>
+            <li>列出工作中最常见的 3 个两难困境，用矛盾分析法设计处理策略。</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M9</div>
+          <p><b>任务：</b>完成"日常辩证思维日记"，连续 7 天记录每天至少 1 个辩证情境及分析处理方式。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>每天至少记录 1 个真实遇到的情境（非编造）</li>
+            <li>每条含：情境描述→识别到的矛盾 / 辩证关系→你的分析→你的处理方式→反思</li>
+            <li>7 天后总结：哪个工具用得最自然？哪个还生疏？哪些场景最容易回到形而上学思维？</li>
+            <li>日记格式不限，但每条 ≥ 100 字，总结 ≥ 300 字</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== Buffer ===== -->
+      <section class="module" id="buffer">
+        <div class="module-head">
+          <span class="mno" style="background:var(--jade)">缓冲</span>
+          <h2>第二阶段缓冲：待提升清单</h2>
+        </div>
+
+        <h3>检查清单</h3>
+        <ul class="checklist">
+          <li><span class="box"></span><div><b>M6</b>：两条路径分析对比（1000 字+）</div></li>
+          <li><span class="box"></span><div><b>M7</b>：3 篇社会现象辩证分析（各 1000 字+）</div></li>
+          <li><span class="box"></span><div><b>M8</b>：个人决策辩证复盘（1500 字+）</div></li>
+          <li><span class="box"></span><div><b>M9</b>：7 天日常辩证思维日记 + 总结</div></li>
+        </ul>
+
+        <div class="selfcheck">
+          <div class="sc-title">关键自查</div>
+          <ol class="clean">
+            <li>在实践练习中，我反复在哪个环节卡住？（识别矛盾困难？找"度"的边界困难？判断转化条件困难？）</li>
+            <li>我的分析是否真的"辩证"——还是在用辩证法的术语包装形而上学的结论？</li>
+            <li>在日常情境中，我是否开始"自动"用辩证思维？还是需要刻意提醒自己？</li>
+          </ol>
+        </div>
+
+        <h3>辩证思维待提升清单（带入第三阶段）</h3>
+        <ul class="clean">
+          <li>"我容易把主要矛盾和矛盾的主要方面混淆"</li>
+          <li>"我在分析'度'时倾向于低估临界点，导致行动滞后"</li>
+          <li>"我虽然能识别矛盾，但在创造转化条件时缺乏具体策略"</li>
+        </ul>
+      </section>
+
+      <div class="footer">
+        来源：资料库文档《辩证法教材_第二阶段_实践理论》（已授权读取）<br/>
+        本页由正文一键可视化生成 · 朱砂 / 黛青学术配色 · 含 Mermaid 四步框架流程图
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  if (window.mermaid){
+    mermaid.initialize({startOnLoad:true, theme:'neutral',
+      themeVariables:{primaryColor:'#fbeee8',lineColor:'#b8472e',fontSize:'15px'}});
+  }
+</script>
+</body>
+</html>

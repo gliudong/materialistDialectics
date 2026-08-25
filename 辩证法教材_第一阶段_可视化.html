@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>辩证法教材 · 第一阶段：理论学习（可视化）</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{
+    --ink:#23211e;
+    --ink-soft:#4a463f;
+    --paper:#faf6ef;
+    --paper-2:#f3ece0;
+    --card:#fffdf9;
+    --line:#e4d9c7;
+    --vermilion:#b8472e;     /* 朱砂 */
+    --vermilion-soft:#d98c79;
+    --jade:#2f6b63;          /* 黛青 */
+    --gold:#b8893a;
+    --shadow:0 6px 24px rgba(60,40,20,.08);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.85;
+    font-size:16px;
+  }
+  h1,h2,h3,h4{
+    font-family:"Noto Serif SC","Songti SC","PingFang SC",serif;
+    color:var(--ink);
+    line-height:1.4;
+  }
+  /* ===== Layout ===== */
+  .layout{display:flex;max-width:1280px;margin:0 auto;}
+  /* ===== Sidebar ===== */
+  .sidebar{
+    width:240px;flex:0 0 240px;
+    position:sticky;top:0;align-self:flex-start;
+    height:100vh;overflow-y:auto;
+    padding:28px 18px;
+    border-right:1px solid var(--line);
+    background:linear-gradient(180deg,#fdfaf4,#f6efe3);
+  }
+  .sidebar .brand{
+    font-family:"Noto Serif SC",serif;
+    font-size:13px;letter-spacing:2px;color:var(--vermilion);
+    font-weight:700;margin-bottom:4px;
+  }
+  .sidebar .brand-sub{font-size:12px;color:var(--ink-soft);margin-bottom:22px;}
+  .nav-group{font-size:12px;color:#9a8f7d;margin:18px 0 8px;letter-spacing:1px;font-weight:600;}
+  .sidebar a{
+    display:block;padding:7px 12px;margin:2px 0;
+    color:var(--ink-soft);text-decoration:none;border-radius:8px;
+    font-size:14px;border-left:3px solid transparent;transition:.15s;
+  }
+  .sidebar a:hover{background:var(--paper-2);color:var(--ink);}
+  .sidebar a.active{background:#fbeee8;border-left-color:var(--vermilion);color:var(--vermilion);font-weight:600;}
+  .sidebar a.sub{padding-left:26px;font-size:13px;color:#8a8275;}
+  /* ===== Main ===== */
+  .main{flex:1;min-width:0;padding:0 0 80px;}
+  .hero{
+    padding:54px 48px 38px;
+    background:
+      radial-gradient(1100px 300px at 80% -10%, rgba(184,71,46,.10), transparent),
+      linear-gradient(180deg,#fffdf9, var(--paper));
+    border-bottom:1px solid var(--line);
+  }
+  .hero .kicker{font-size:13px;letter-spacing:3px;color:var(--vermilion);font-weight:700;}
+  .hero h1{font-size:34px;margin:8px 0 6px;letter-spacing:1px;}
+  .hero .lead{font-size:15px;color:var(--ink-soft);max-width:760px;}
+  .phase-tag{
+    display:inline-block;margin-top:16px;padding:6px 14px;border-radius:999px;
+    background:#fbeee8;color:var(--vermilion);font-size:13px;font-weight:600;
+    border:1px solid #f0d5cb;
+  }
+  .content{padding:0 48px;}
+  /* ===== Callout ===== */
+  .callout{
+    background:var(--card);border:1px solid var(--line);border-left:5px solid var(--jade);
+    border-radius:12px;padding:20px 24px;margin:28px 0;box-shadow:var(--shadow);
+  }
+  .callout .tag{font-size:12px;font-weight:700;color:var(--jade);letter-spacing:1px;margin-bottom:6px;}
+  .callout p{margin:6px 0;color:var(--ink-soft);}
+  /* ===== Module block ===== */
+  .module{
+    margin-top:46px;padding-top:26px;border-top:1px dashed var(--line);
+  }
+  .module-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .module-head .mno{
+    font-family:"Noto Serif SC",serif;font-size:22px;font-weight:700;color:#fff;
+    background:var(--vermilion);padding:6px 16px;border-radius:10px;box-shadow:var(--shadow);
+  }
+  .module-head h2{font-size:25px;margin:0;}
+  .module-meta{font-size:13px;color:#a89c88;margin-left:auto;}
+  .section{margin:26px 0;}
+  .section h3{
+    font-size:19px;margin:0 0 12px;padding-left:13px;
+    border-left:4px solid var(--gold);
+  }
+  .section h4{font-size:16px;color:var(--vermilion);margin:18px 0 8px;}
+  /* ===== Goals card ===== */
+  .goals{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 22px;margin:8px 0 4px;box-shadow:var(--shadow);
+  }
+  .goals ul{margin:0;padding-left:20px;}
+  .goals li{margin:6px 0;}
+  /* ===== Method card ===== */
+  .method{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 24px;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .method .label{
+    display:inline-block;font-size:12px;font-weight:700;color:var(--jade);
+    background:#eaf3f1;border:1px solid #cfe6e1;border-radius:6px;padding:2px 10px;margin-bottom:8px;
+  }
+  .def-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+  .def-pair .d{background:var(--paper-2);border-radius:10px;padding:12px 14px;font-size:14.5px;}
+  .def-pair .d b{color:var(--vermilion);}
+  /* ===== Lists ===== */
+  ul.clean,ol.clean{margin:8px 0;padding-left:22px;}
+  ul.clean li,ol.clean li{margin:7px 0;}
+  .hint{font-size:13.5px;color:#8a8073;font-style:italic;}
+  /* ===== Step flow ===== */
+  .steps{counter-reset:s;margin:14px 0;padding:0;list-style:none;}
+  .steps li{
+    counter-increment:s;position:relative;padding:12px 16px 12px 52px;margin:10px 0;
+    background:var(--paper-2);border-radius:10px;border:1px solid var(--line);
+  }
+  .steps li::before{
+    content:counter(s);position:absolute;left:14px;top:12px;
+    width:26px;height:26px;border-radius:50%;background:var(--vermilion);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+    font-family:"Noto Serif SC",serif;
+  }
+  /* ===== Case / source grid ===== */
+  .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0;}
+  .case{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+    box-shadow:var(--shadow);
+  }
+  .case .ct{font-weight:700;color:var(--vermilion);font-size:15px;margin-bottom:8px;
+    border-bottom:1px solid var(--line);padding-bottom:6px;}
+  .case ul{margin:6px 0;padding-left:18px;font-size:14.5px;}
+  .case ul li{margin:5px 0;}
+  /* ===== Table ===== */
+  .tbl-wrap{overflow-x:auto;margin:14px 0;}
+  table.styled{
+    width:100%;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
+    font-size:14.5px;
+  }
+  table.styled thead th{
+    background:var(--ink);color:#fdf6ec;text-align:left;padding:12px 16px;font-weight:600;
+    font-family:"Noto Serif SC",serif;letter-spacing:.5px;
+  }
+  table.styled td{padding:11px 16px;border-top:1px solid var(--line);vertical-align:top;}
+  table.styled tbody tr:nth-child(even){background:#fbf6ee;}
+  table.styled b{color:var(--vermilion);}
+  /* ===== Mermaid ===== */
+  .diagram-box{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;margin:16px 0;box-shadow:var(--shadow);text-align:center;
+  }
+  .diagram-box .cap{font-size:13px;color:var(--ink-soft);margin-top:8px;}
+  .mermaid{background:transparent;}
+  /* ===== Task card ===== */
+  .task{
+    background:linear-gradient(135deg,#fffdf9,#fbf2ea);
+    border:1px solid #f0d9cd;border-left:5px solid var(--gold);
+    border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .task .t-title{font-weight:700;color:var(--gold);font-size:15px;margin-bottom:8px;}
+  /* ===== Checklist ===== */
+  .checklist{list-style:none;padding:0;margin:10px 0;}
+  .checklist li{
+    display:flex;gap:12px;align-items:flex-start;padding:11px 16px;margin:8px 0;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);
+  }
+  .checklist .box{
+    flex:0 0 22px;width:22px;height:22px;border:2px solid var(--vermilion);border-radius:6px;
+    margin-top:2px;position:relative;
+  }
+  .selfcheck{background:#eef4f2;border:1px solid #cfe6df;border-radius:12px;padding:16px 20px;margin:14px 0;}
+  .selfcheck .sc-title{font-weight:700;color:var(--jade);margin-bottom:8px;}
+  /* ===== Footer ===== */
+  .footer{
+    margin:50px 48px 0;padding:22px 0 0;border-top:1px solid var(--line);
+    font-size:13px;color:#a89c88;text-align:center;
+  }
+  /* ===== Responsive ===== */
+  @media(max-width:900px){
+    .layout{flex-direction:column;}
+    .sidebar{position:static;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);}
+    .sidebar a.sub{display:none;}
+    .content,.hero,.footer{padding-left:22px;padding-right:22px;}
+    .def-pair,.case-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="brand">辩证法教材</div>
+    <div class="brand-sub">第一阶段 · 理论学习</div>
+    <div class="nav-group">阶段概览</div>
+    <a href="#top">阶段目标</a>
+    <a href="#meta">全教材元结构（先睹）</a>
+    <div class="nav-group">核心模块</div>
+    <a href="#m1">M1 概述与历史源流</a>
+    <a href="#m2">M2 黑格尔辩证法</a>
+    <a href="#m3">M3 两大特征 · 三大规律</a>
+    <a href="#m3-1" class="sub">· 两大总特征</a>
+    <a href="#m3-2" class="sub">· 对立统一规律</a>
+    <a href="#m3-3" class="sub">· 质量互变规律</a>
+    <a href="#m3-4" class="sub">· 否定之否定</a>
+    <a href="#m3-5" class="sub">· 三大规律关系</a>
+    <a href="#m4">M4 五大基本范畴</a>
+    <a href="#m5">M5 中西辩证比较</a>
+    <div class="nav-group">阶段收尾</div>
+    <a href="#buffer">缓冲 · 复习整理</a>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="hero" id="top">
+      <div class="kicker">DIALECTICAL MATERIALISM · 理论篇</div>
+      <h1>辩证法教材 — 第一阶段：理论学习</h1>
+      <p class="lead">建立辩证法的基本概念框架，理解从古希腊到马克思主义的辩证法发展脉络，掌握核心规律与范畴。本阶段核心不是"练"而是"立"——把地基打牢，每一个概念都要能举出至少一个例子再继续。每读一节后暂停，用自己的话复述核心概念，每个模块末尾有"里程碑任务"，完成后方可进入下一模块。</p>
+      <span class="phase-tag">理论学习（正题）→ 实践理论（反题）→ 通过理论改造 / 重新认识（合题·否定之否定）</span>
+    </header>
+
+    <div class="content">
+
+      <!-- ===== 元结构 ===== -->
+      <section class="module" id="meta" style="border-top:none;margin-top:30px;">
+        <div class="callout">
+          <div class="tag">全教材元结构（先睹）</div>
+          <p>本套教材三阶段"理论学习 → 实践理论 → 通过理论改造/重新认识"，其本身就是一次辩证运动——正题（肯定）→ 反题（否定）→ 合题（否定之否定·更高回归）。你在第三阶段末的"重新认识"，已是更高层次的起点，而非回到原点。</p>
+          <div class="diagram-box">
+            <div class="mermaid">
+graph LR
+    A["① 第一阶段 · 理论学习<br/>正题 · 肯定"] --> B["② 第二阶段 · 实践理论<br/>反题 · 否定"]
+    B --> C["③ 第三阶段 · 改造/重新认识<br/>合题 · 否定之否定 · 更高回归"]
+    C -.->|"螺旋上升：重新认识后的视野<br/>成为新的理论学习起点"| A
+            </div>
+            <div class="cap">图示：全教材三阶段元结构 = 一次正→反→合的辩证运动</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== M1 ===== -->
+      <section class="module" id="m1">
+        <div class="module-head">
+          <span class="mno">M1</span>
+          <h2>辩证法概述与历史源流</h2>
+          <span class="module-meta">定义 · 五组区别 · 三大源头 · 历史形态</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能用自己的话定义"辩证法"</li>
+              <li>能说出辩证法与形而上学的至少 5 组根本区别</li>
+              <li>能列举古代辩证法的 3 个源头并解释其核心思想</li>
+              <li>能识别日常思维中的形而上学倾向</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>1.1 什么是辩证法</h3>
+          <p><b>词源</b>：辩证法一词源于古希腊语 dialektikē technē（对话的技艺），原义为"交谈的艺术""论辩的方法"。在古希腊，辩证法最初是一种通过对话和辩论来探求真理的方法——通过提出正方观点和反方观点，在交锋中发现更接近真理的结论。</p>
+          <p><b>核心定义</b>：辩证法是关于自然、社会和思维的运动、变化和发展的一般规律的哲学学说。它认为，世界上的万事万物都处于普遍联系之中，都处于永恒的运动和变化之中；事物发展的根本动力在于事物内部的矛盾。</p>
+          <p>用一句话概括：<b>辩证法是用联系的、发展的、全面的观点看世界的思维方式。</b></p>
+          <p>与之相对的形而上学，则是用孤立的、静止的、片面的观点看世界。这是两种根本对立的世界观和方法论。</p>
+        </div>
+
+        <div class="section">
+          <h3>1.2 辩证法 vs 形而上学：五组根本区别</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>对比维度</th><th>形而上学</th><th>辩证法</th></tr></thead>
+              <tbody>
+                <tr><td>看事物的方式</td><td>孤立地看——每个事物是独立的、互不影响</td><td>联系地看——事物之间普遍联系、相互作用</td></tr>
+                <tr><td>看运动的方式</td><td>静止地看——事物固定不变，或只有数量增减</td><td>发展地看——不仅有量变，更有质变，新事物代替旧事物</td></tr>
+                <tr><td>看矛盾的方式</td><td>否认矛盾——认为 A 不能同时是非 A</td><td>承认矛盾——事物内部包含对立面，矛盾是发展的动力</td></tr>
+                <tr><td>看事物全貌的方式</td><td>片面地看——只看到一个方面</td><td>全面地看——看到对立面的统一，兼顾多个方面</td></tr>
+                <tr><td>看因果的方式</td><td>直线因果——A 导致 B，B 导致 C</td><td>辩证因果——因果相互交织，互为因果，有必然也有偶然</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><b>理解要点</b>：形而上学不是"错误的"，它是一定条件下有效的简化思维方式。当你需要快速判断"这个东西是不是那东西"时，形式逻辑（A=A）是有用的。但当你需要理解事物的变化、发展和内在矛盾时，就必须用辩证法。</p>
+          <p>举例：把一个鸡蛋看作"鸡蛋"，这是形式思维，没有问题。但如果要理解鸡蛋为什么能变成小鸡，就必须看到鸡蛋内部的生命矛盾——它既是鸡蛋又不是鸡蛋（包含着变为非鸡蛋的种子），这就是辩证思维。</p>
+        </div>
+
+        <div class="section">
+          <h3>1.3 古代辩证法的三个源头</h3>
+
+          <div class="case">
+            <div class="ct">源头一：赫拉克利特 —— "万物皆流"</div>
+            <p>赫拉克利特（约公元前 535–475 年）是古希腊哲学家，被称为"辩证法之父"。</p>
+            <ul>
+              <li><b>"人不能两次踏入同一条河流"</b>——河流时刻在流动，当你第二次踏入时，水已经换了，河已经不是原来的河。这意味着万物处于永恒变化中。</li>
+              <li><b>"万物皆流，无物常驻"</b>——世界上没有绝对静止不变的东西。</li>
+              <li><b>"对立面相互转化"</b>——冷与热、生与死、醒与睡，这些对立面不是绝对割裂的，而是相互依存、相互转化的。</li>
+              <li><b>"斗争是万物之父"</b>——对立面的冲突和斗争推动万物变化发展。</li>
+            </ul>
+            <p class="hint">赫拉克利特的贡献：他第一次明确提出了"变化"和"对立统一"的思想，奠定了辩证法的基本方向。</p>
+          </div>
+
+          <div class="case">
+            <div class="ct">源头二：老子 —— "反者道之动"</div>
+            <p>老子（生卒年传说为约公元前 6 世纪，具体不可考）是中国春秋时期的哲学家，《道德经》中包含了丰富的辩证思维：</p>
+            <ul>
+              <li><b>"反者道之动"</b>——道的运动方向是向自己的对立面转化。事物发展到极点就会向相反方向走。这是否定之否定规律的古代表达。</li>
+              <li><b>"有无相生，难易相成，长短相形，高下相倾"</b>——对立面不是孤立的，而是相互依存、相互规定的。</li>
+              <li><b>"祸兮福之所倚，福兮祸之所伏"</b>——福与祸相互包含、相互转化。</li>
+              <li><b>"柔弱胜刚强"</b>——柔弱与刚强不是绝对的，柔弱中蕴含生命力，刚强中蕴含脆弱。</li>
+            </ul>
+            <p class="hint">老子的辩证思维特点：重直觉体悟，重实践智慧，不重逻辑推演。它是一种"生活化的辩证法"。</p>
+          </div>
+
+          <div class="case">
+            <div class="ct">源头三：苏格拉底 —— 对话辩证法</div>
+            <p>苏格拉底（公元前 470–399 年）的辩证法是一种方法论：</p>
+            <ul>
+              <li><b>"产婆术"（助产术）</b>——不直接给出答案，而是通过不断提问，让对方自己发现矛盾、修正观点，最终"生出"真理。</li>
+              <li><b>对话的辩证结构</b>：提出初始定义（正题）→ 通过反例发现不足（反题）→ 修正形成更完善观点（合题）→ 再追问……循环推进。</li>
+              <li><b>"我知道我一无所知"</b>——承认自己的无知是辩证对话的起点。真正的认识始于对自己既有认知的否定。</li>
+            </ul>
+            <p class="hint">苏格拉底的贡献：把辩证法从"自然哲学"引入"人的哲学"，不仅是认识世界的方式，更是认识自己、修正认知的方法。</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>1.4 辩证法的三个历史形态</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>历史形态</th><th>代表人物</th><th>核心特征</th><th>局限</th></tr></thead>
+              <tbody>
+                <tr><td><b>古代朴素辩证法</b></td><td>赫拉克利特、老子</td><td>直觉式地把握到世界的变化和对立面转化</td><td>缺乏科学论证，带有朴素性和猜测性</td></tr>
+                <tr><td><b>唯心辩证法</b></td><td>黑格尔</td><td>在《逻辑学》中系统展开辩证运动基本形式（质量互变、对立统一、否定之否定贯穿其中），后由恩格斯明确归纳为三大规律</td><td>头脚倒置——把辩证法看作精神自我运动的产物</td></tr>
+                <tr><td><b>唯物辩证法</b></td><td>马克思、恩格斯</td><td>把辩证法建立在物质基础上，是关于自然、社会和思维一般规律的科学</td><td>历史上曾出现将其教条化、公式化的倾向；自然辩证法适用范围在学界存在持续讨论；理论体系本身仍需随实践发展而丰富</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>从古代到现代，辩证法经历了一个"朴素→系统（但唯心）→科学"的发展过程。这个过程本身也是辩证的：正题（朴素辩证法）→反题（形而上学主导的中世纪）→合题（唯心辩证法）→更高层次的合题（唯物辩证法）。</p>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M1</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>概念</th><th>一句话解释</th></tr></thead>
+              <tbody>
+                <tr><td><b>辩证法</b></td><td>用联系的、发展的、全面的观点看世界</td></tr>
+                <tr><td><b>形而上学</b></td><td>用孤立的、静止的、片面的观点看世界</td></tr>
+                <tr><td><b>普遍联系</b></td><td>一切事物都与其他事物处于相互联系之中</td></tr>
+                <tr><td><b>对立面转化</b></td><td>事物的对立面在一定条件下向对方转化</td></tr>
+                <tr><td><b>产婆术</b></td><td>通过不断提问让对方自己发现矛盾、修正观点的方法</td></tr>
+                <tr><td><b>朴素辩证法</b></td><td>古代哲学家直觉式把握到的辩证思想，缺乏系统论证</td></tr>
+                <tr><td><b>唯心辩证法</b></td><td>黑格尔系统化的辩证法，以"绝对精神"为基础</td></tr>
+                <tr><td><b>唯物辩证法</b></td><td>马克思主义的科学辩证法，以物质为基础</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M1</h3>
+          <ol class="clean">
+            <li>举出你生活中一个"形而上学思维"的例子（孤立、静止、片面地看问题），然后尝试用辩证思维重新分析。</li>
+            <li>"祸兮福之所倚，福兮祸之所伏"——举一个你亲身经历的例子说明这句话。</li>
+            <li>苏格拉底的"我知道我一无所知"和辩证法有什么关系？为什么承认无知是辩证思维的起点？</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M1</div>
+          <p><b>任务：</b>写一份"辩证法 vs 形而上学"对比笔记（不少于 800 字）。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>至少列举 5 组对比维度（可参考 1.2 表格，但需用自己的话展开论述）</li>
+            <li>每组对比需配一个具体生活实例</li>
+            <li>结尾需说明：你认为在什么情况下适合用形而上学思维，什么情况下必须用辩证思维？</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M2 ===== -->
+      <section class="module" id="m2">
+        <div class="module-head">
+          <span class="mno">M2</span>
+          <h2>黑格尔辩证法</h2>
+          <span class="module-meta">三段式 · 扬弃 · 矛盾动力 · 唯心局限</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能完整阐述正题-反题-合题三段式的运作逻辑</li>
+              <li>理解"矛盾是万物发展的动力"这一命题</li>
+              <li>能用三段式分析一个具体的日常现象</li>
+              <li>认识黑格尔辩证法的唯心主义局限</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>2.1 黑格尔辩证法的哲学背景</h3>
+          <p>黑格尔（1770–1831）是德国古典哲学的集大成者。在他之前：</p>
+          <ul class="clean">
+            <li>康德划分了"现象界"（可知）和"物自体"（不可知），认为人的理性有界限</li>
+            <li>费希特试图用"自我"出发构建整个哲学体系</li>
+            <li>谢林试图用"自然与精神的同一"来超越康德的对立</li>
+          </ul>
+          <p>黑格尔不满意康德把"物自体"设为不可知——如果物自体不可知，你怎么知道它存在？他认为，真正的哲学应该把握"绝对"（即整个现实的总和），而把握"绝对"的方法就是辩证法。</p>
+        </div>
+
+        <div class="section">
+          <h3>2.2 正题-反题-合题：三段式的运作逻辑</h3>
+          <p>黑格尔辩证法的核心结构是"三段式"（注意：黑格尔本人很少使用"正题-反题-合题"这套术语，这是后人（经费希特、谢林的用语传统）追溯性地套用于黑格尔的，但它确实抓住了黑格尔辩证法的运作模式）。</p>
+
+          <div class="method">
+            <span class="label">第一阶段：正题</span>
+            <p>正题是事物发展的初始状态，是一个直接的、未分化的统一体。它看似完整自足，但实际上包含着内在的矛盾——它还没有展开自己的内容，还没有意识到自身的否定因素。</p>
+            <p class="hint">举例：一颗种子是正题。它是完整的、自足的——看起来就是一颗种子。但它内部包含着否定自己的因素——它要发芽、长成植物，就不再是种子了。</p>
+          </div>
+          <div class="method">
+            <span class="label">第二阶段：反题</span>
+            <p>反题是正题的自我否定。正题内部的矛盾发展到了对立面，正题被否定。但这个否定不是简单的消灭，而是"扬弃"（Aufheben）——既消灭又保留。</p>
+            <p class="hint">继续举例：种子发芽长成幼苗。种子被否定了（不再存在为种子），但它的生命力被保留并发展了（变成了幼苗）。</p>
+          </div>
+          <div class="method">
+            <span class="label">第三阶段：合题</span>
+            <p>合题是反题的再否定，是正题与反题的统一。合题不是回到正题的原地踏步，而是在更高层次上包含了正题和反题的合理因素。</p>
+            <p class="hint">继续举例：幼苗最终开花结果，结出新的种子。新的种子在形式上回到了"种子"的状态，但在内容上是更高层次的——它经过了完整的生长过程，携带了更多的生命信息。</p>
+          </div>
+          <p><b>三段式的关键理解：</b></p>
+          <ol class="clean">
+            <li><b>内在性</b>：否定不是外力强加的，而是事物自身发展的结果。</li>
+            <li><b>扬弃（Aufheben）</b>：德语 Aufheben 有双重含义——"取消"和"保存"。辩证的否定是"取消低级形式，保存其合理内核"。</li>
+            <li><b>螺旋上升</b>：合题看似回到了起点，但实际是更高层次的重演。不是"转圈"，是"螺旋上升"。</li>
+          </ol>
+        </div>
+
+        <div class="section">
+          <h3>2.3 "矛盾是万物发展的动力"</h3>
+          <p>这是黑格尔辩证法的核心命题。需要澄清：</p>
+          <p><b>"矛盾"在这里不是逻辑矛盾</b>（A 且非 A 不能同时为真），而是<b>辩证矛盾</b>——事物内部包含着对立的力量，这些对立力量的相互作用推动事物发展。</p>
+          <p>黑格尔在《小逻辑》中说："矛盾是推动整个世界的原则。"他的论证逻辑是：</p>
+          <ol class="clean">
+            <li>如果事物只是自身等同（A=A），没有内部差异和对立，那么它就不会有任何变化。</li>
+            <li>但事物确实在变化。</li>
+            <li>因此，事物内部必然包含着差异和对立——即矛盾。</li>
+            <li>矛盾双方的相互作用（同一与斗争）就是事物发展的根本动力。</li>
+          </ol>
+          <p class="hint">举例：一颗植物的生长，内部包含"同化"（吸收营养、生长）和"异化"（消耗能量、衰老）的矛盾。正是这对矛盾推动植物不断发展变化。</p>
+        </div>
+
+        <div class="section">
+          <h3>2.4 绝对精神的自我否定运动</h3>
+          <p>黑格尔认为，整个宇宙历史是"绝对精神"（Absolute Spirit）自我认识的过程。这个过程就是辩证法：</p>
+          <ol class="clean">
+            <li>绝对精神最初是"自在"的——存在但未自我认识（正题）</li>
+            <li>绝对精神外化为自然——在自然中失去了自我意识（反题）</li>
+            <li>绝对精神在人的精神中重新认识自己——达到"自为"状态（合题）</li>
+          </ol>
+          <p>在黑格尔看来，人类历史、文化、哲学的发展，都是绝对精神自我认识的展开过程。每个时代的哲学都是绝对精神认识的一个阶段，后来者扬弃前人，达到更高的认识。</p>
+        </div>
+
+        <div class="section">
+          <h3>2.5 黑格尔辩证法的唯心主义局限</h3>
+          <p>黑格尔的辩证法体系宏大深刻，但有一个根本问题：<b>头脚倒置</b>。</p>
+          <p>黑格尔认为辩证法是"绝对精神"的自我运动，物质世界只是精神的外化。也就是说，是精神的辩证运动产生了物质世界，而不是物质世界的辩证发展产生了精神。</p>
+          <p>马克思的评价：黑格尔辩证法是"倒立的"，需要把它"翻转过来"——不是精神通过辩证运动外化为物质，而是物质世界本身的辩证发展在人的意识中的反映。</p>
+          <p>黑格尔辩证法的其他局限：</p>
+          <ul class="clean">
+            <li>体系封闭：黑格尔认为哲学在他那里达到了终极形态，违背了辩证法"发展无止境"的精神</li>
+            <li>精英主义：认为某些民族（日耳曼）代表绝对精神的最高阶段</li>
+            <li>忽视物质条件：不重视经济、生产方式等物质因素对历史发展的决定作用</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M2</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>概念</th><th>一句话解释</th></tr></thead>
+              <tbody>
+                <tr><td><b>三段式</b></td><td>正题→反题→合题的辩证发展结构</td></tr>
+                <tr><td><b>正题</b></td><td>事物发展的初始状态，包含内在矛盾但尚未展开</td></tr>
+                <tr><td><b>反题</b></td><td>正题的自我否定，正题内在矛盾的展开</td></tr>
+                <tr><td><b>合题</b></td><td>反题的再否定，在更高层次上统一正题与反题</td></tr>
+                <tr><td><b>扬弃 (Aufheben)</b></td><td>既取消又保存，否定中包含保留</td></tr>
+                <tr><td><b>辩证矛盾</b></td><td>事物内部对立力量的相互作用，是发展的动力</td></tr>
+                <tr><td><b>绝对精神</b></td><td>黑格尔所说的宇宙精神实体，通过辩证运动自我认识</td></tr>
+                <tr><td><b>头脚倒置</b></td><td>马克思对黑格尔唯心辩证法的批判——精神不应先于物质</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M2</h3>
+          <ol class="clean">
+            <li>用三段式分析"学习一项新技能"的过程：初始状态是什么（正题）？遇到什么困难否定了初始状态（反题）？最终如何达到更高层次（合题）？</li>
+            <li>黑格尔说"矛盾是推动世界的原则"。但日常生活中我们通常把"矛盾"理解为需要消除的问题。这两种"矛盾"概念有什么不同？</li>
+            <li>有人说黑格尔辩证法是"用一个体系解释一切的宏大叙事"。你认为这种说法合理吗？辩证法能不能成为"解释一切"的工具？</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M2</div>
+          <p><b>任务：</b>用三段式分析一个日常现象（如"自由与纪律""个人与集体""理论与实践"等），写出完整的"正题→反题→合题"推演过程。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>选定一个你感兴趣的辩证现象</li>
+            <li>正题部分：描述初始状态及其内在矛盾</li>
+            <li>反题部分：描述矛盾如何展开、初始状态如何被否定</li>
+            <li>合题部分：描述更高层次的统一如何实现，以及为什么不是简单地回到原点</li>
+            <li>全文不少于 800 字</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M3 ===== -->
+      <section class="module" id="m3">
+        <div class="module-head">
+          <span class="mno">M3</span>
+          <h2>唯物辩证法：两大总特征与三大规律（核心）</h2>
+          <span class="module-meta">核心模块 · 放慢节奏</span>
+        </div>
+
+        <div class="callout">
+          <div class="tag">本模块提示</div>
+          <p>本模块是整个路线图的核心。唯物辩证法的全部内容都围绕"两大总特征"和"三大规律"展开。请放慢节奏，确保每个概念都能举出至少一个例子再继续。</p>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能完整阐述两大总特征的内容</li>
+              <li>能完整阐述三大规律的核心命题、基本概念和适用条件</li>
+              <li>能说明三大规律之间的层级关系</li>
+              <li>能用每个规律分析至少一个生活实例</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section" id="m3-1">
+          <h3>3.1 两大总特征</h3>
+
+          <div class="method">
+            <span class="label">特征一：普遍联系</span>
+            <p><b>定义</b>：一切事物都与周围其他事物处于相互联系、相互作用之中。没有任何事物是孤立存在的。</p>
+            <ul class="clean">
+              <li><b>联系的客观性</b>：联系是事物本身固有的，不是主观外加的。水往低处流，是水与地球引力之间的客观联系。</li>
+              <li><b>联系的普遍性</b>：空间上每一事物都与其他事物相联系（蝴蝶效应）；时间上现在与过去未来相联系；内容上事物内部各要素也相互联系。</li>
+              <li><b>联系的条件性</b>：具体的联系总是有条件的。水在常温下是液体，但在 0 度以下会变冰——联系的形式依赖于条件。</li>
+            </ul>
+            <p class="hint">实际意义：看问题不能只看一点，要看"关系网"。不能"头痛医头脚痛医脚"。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">特征二：永恒发展</span>
+            <p><b>定义</b>：一切事物都处于永恒的运动、变化和发展之中。没有永恒不变的事物。</p>
+            <ul class="clean">
+              <li><b>运动是物质的根本属性</b>：没有不运动的物质，也没有不是物质的运动。</li>
+              <li><b>发展的实质</b>：发展不是简单的位置移动或数量增减，而是新事物的产生和旧事物的灭亡。发展是上升的、前进的运动。</li>
+              <li><b>新事物不可战胜</b>：新事物在旧事物内部产生，虽然初期可能弱小，但代表发展方向，最终会战胜旧事物。</li>
+            </ul>
+            <p class="hint">实际意义：看问题不能静止地看，要看趋势、看变化方向。今天弱小的不一定永远弱小。</p>
+          </div>
+        </div>
+
+        <div class="section" id="m3-2">
+          <h3>3.2 三大规律之一：对立统一规律（核心中的核心）</h3>
+          <p>对立统一规律又称矛盾规律，是唯物辩证法的实质和核心。它回答"事物为什么发展"——因为内部有矛盾。</p>
+
+          <div class="method">
+            <span class="label">3.2.1 矛盾的同一性和斗争性</span>
+            <p><b>矛盾的同一性</b>（统一性）：矛盾双方相互依存、相互贯通的性质。</p>
+            <ul class="clean">
+              <li>相互依存：矛盾双方互为存在的条件。没有上就没有下，没有困难就没有成功。</li>
+              <li>相互贯通（相互转化）：矛盾双方在一定条件下向对方转化。困难可以转化为动力，失败可以转化为经验。</li>
+            </ul>
+            <p><b>矛盾的斗争性</b>：矛盾双方相互排斥、相互对立的性质。斗争性是无条件的、绝对的。</p>
+            <p><b>同一性和斗争性的关系</b>：</p>
+            <ul class="clean">
+              <li>同一性是相对的（有条件的），斗争性是绝对的（无条件的）</li>
+              <li>斗争性寓于同一性之中——没有统一体就没有斗争</li>
+              <li>矛盾双方既同一又斗争，推动事物发展</li>
+            </ul>
+            <p class="hint">举例：教与学是一对矛盾。同一性表现为师生相互依存；斗争性表现为教师想多讲、学生想多练的对立——正是"既统一又对立"推动教学质量提升。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">3.2.2 矛盾的普遍性和特殊性</span>
+            <p><b>普遍性</b>：矛盾存在于一切事物中，贯穿于事物发展过程的始终。事事有矛盾，时时有矛盾。矛盾不能被"消除"，只能被"转化"。</p>
+            <p><b>特殊性</b>：每个矛盾都有其特殊性——不同的矛盾有不同的性质、不同的解决方式。</p>
+            <ul class="clean">
+              <li>不同事物的矛盾各不相同</li>
+              <li>同一事物在不同发展阶段的矛盾不同</li>
+              <li>同一矛盾在不同阶段的特点不同</li>
+              <li>矛盾双方的地位不同：有主要矛盾和次要矛盾、主要方面和次要方面之分</li>
+            </ul>
+            <p class="hint">方法论意义：具体问题具体分析。不能用一个公式套所有问题。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">3.2.3 主要矛盾和次要矛盾</span>
+            <p><b>主要矛盾</b>：在复杂事物的发展过程中起决定作用的、规定其他矛盾性质和发展的矛盾。</p>
+            <ul class="clean">
+              <li>抓主要矛盾——解决了主要矛盾，其他矛盾就容易解决</li>
+              <li>但不能忽视次要矛盾——次要矛盾处理不好也会上升为主要矛盾</li>
+              <li>主要矛盾和次要矛盾在一定条件下相互转化</li>
+            </ul>
+            <p class="hint">举例：一个创业公司，初期主要矛盾是"产品是否满足市场需求"，其他矛盾（团队、资金、品牌）是次要的。产品验证成功后，主要矛盾可能转化为"能否快速扩张"。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">3.2.4 矛盾的主要方面和次要方面</span>
+            <p>在任何一个矛盾中，双方的地位不是平等的。居于支配地位的是矛盾的主要方面，居于被支配地位的是次要方面。</p>
+            <p><b>事物的性质主要由矛盾的主要方面决定</b>：如果"好"的方面是主要的，事物就表现出"好"的性质；反之则表现出"坏"的性质。</p>
+            <p class="hint">举例：一个人的优点和缺点中，若优点是主要方面则总体是"好人"；但若好人做坏事多了，坏事可能上升为主要方面。</p>
+          </div>
+
+          <div class="diagram-box">
+            <div class="mermaid">
+graph TB
+    T["复杂事物（多矛盾并存）"]
+    T --> PM["主要矛盾<br/>起决定作用，规定其他矛盾"]
+    T --> SM["次要矛盾<br/>被主要矛盾规定"]
+    PM --> MA["矛盾的主要方面<br/>（支配地位·规定事物性质）"]
+    PM --> SA["矛盾的次要方面<br/>（被支配地位）"]
+    MA <-->|"同一性：相互依存·相互转化（相对）"| SA
+    MA <==>|"斗争性：相互排斥·对立（绝对）"| SA
+    MA -.->|"条件变化 → 相互转化"| SA
+            </div>
+            <div class="cap">图示：矛盾的主次结构与同一性/斗争性（对应 3.2.2–3.2.4）</div>
+          </div>
+        </div>
+
+        <div class="callout" style="border-left-color:var(--gold);">
+          <div class="tag" style="color:var(--gold);">半程检查站（学完 3.1–3.2 后先做，再进入 3.3）</div>
+          <p>在进入质量互变规律之前，先用 10 分钟完成以下自测。如果答不上来，回到 3.2 对应小节重读，不要带疑前进。</p>
+          <p><b>自测题</b>：</p>
+          <ol class="clean">
+            <li>不看笔记，说出矛盾同一性的两层含义（相互依存、相互转化），并各举一例。</li>
+            <li>"同一性是相对的，斗争性是绝对的"——"相对"和"绝对"在这里分别指什么？</li>
+            <li>"主要矛盾"和"矛盾的主要方面"有什么区别？用"一个创业公司在产品验证期的处境"分别举例。</li>
+          </ol>
+          <p><b>映射练习</b>：选一个你当前正在处理的问题，写下——矛盾双方是____和____；同一性表现在____；斗争性表现在____；其中____是主要方面，因为____。</p>
+        </div>
+
+        <div class="section" id="m3-3">
+          <h3>3.3 三大规律之二：质量互变规律</h3>
+          <p>质量互变规律回答"事物怎样发展"——通过量变到质变再到新的量变。</p>
+
+          <div class="method">
+            <span class="label">3.3.1 质、量、度</span>
+            <ul class="clean">
+              <li><b>质</b>：一事物区别于他事物的内在规定性。质变了，事物就变成了别的东西。</li>
+              <li><b>量</b>：事物的规模、程度、速度等可以用数量表示的规定性。量变不改变事物的质。</li>
+              <li><b>度</b>：保持事物质的量的界限。水在 0 度到 100 度之间保持液态——这个 0–100 度的范围就是水作为液体的"度"。</li>
+            </ul>
+            <p class="hint">注意：以上数值以标准大气压为前提。在高原低压环境中，水不到 100°C 就沸腾；高压锅内超过 100°C 仍是液态。这本身也说明："度"的具体界限依赖于条件——条件变了，"度"的边界也随之移动。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">3.3.2 量变和质变</span>
+            <ul class="clean">
+              <li><b>量变</b>：事物数量的增减和场所的变更。渐进的、不显著的变化。</li>
+              <li><b>质变</b>：事物根本性质的变化。渐进过程的中断，是飞跃。</li>
+            </ul>
+            <p><b>量变和质变的关系</b>：</p>
+            <ol class="clean">
+              <li>量变是质变的必要准备——没有量变的积累，就不会有质变。</li>
+              <li>质变是量变的必然结果——量变积累到一定程度，必然突破"度"的界限，引起质变。</li>
+              <li>质变后又开始新的量变——质变不是终点，新事物在新质的基础上开始新的量变过程。</li>
+            </ol>
+          </div>
+
+          <div class="diagram-box">
+            <div class="mermaid">
+graph LR
+    Q1["量变阶段<br/>在『度』之内<br/>（渐进·不显著·质稳定）"] -->|"积累突破度的界限"| Q2["质变<br/>（飞跃·根本性质改变）"]
+    Q2 --> Q3["新的量变<br/>（在新质基础上展开）"]
+    Q3 -.->|"新的度·新的界限"| Q1
+            </div>
+            <div class="cap">图示：量变 → 质变 → 新的量变（对应 3.3）</div>
+          </div>
+          <p class="hint">横轴是"量"（如温度、累积次数），纵轴是"质"。在度的范围内，量再怎么变，质都保持稳定（平台）；一旦突破度的界限，质发生跳跃（台阶）。突破点就是"临界点"。</p>
+
+          <div class="method">
+            <span class="label">3.3.3 量变到质变的转化形式</span>
+            <ol class="clean">
+              <li><b>数量增减引起质变</b>：温度从 99 度到 100 度，水从液态变气态。</li>
+              <li><b>场所变更引起质变</b>：同样的原子，排列方式不同，形成金刚石或石墨。</li>
+              <li><b>结构变化引起质变</b>：同样的汉字部件，"不"和"用"上下组合成"甭"（béng，意为"不用"）——结构变了，质就变了。</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="section" id="m3-4">
+          <h3>3.4 三大规律之三：否定之否定规律</h3>
+          <p>否定之否定规律回答"事物发展的方向和道路"——事物发展是螺旋上升、波浪前进的。</p>
+
+          <div class="method">
+            <span class="label">3.4.1 肯定与否定</span>
+            <ul class="clean">
+              <li><b>肯定因素</b>：维持事物存在的因素，保持事物当前性质的倾向。</li>
+              <li><b>否定因素</b>：促使事物灭亡的因素，促使事物转化为他物的倾向。</li>
+            </ul>
+            <p>任何事物内部都同时包含肯定因素和否定因素。事物的发展就是否定因素最终战胜肯定因素，事物发生质变。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">3.4.2 辩证的否定（扬弃）</span>
+            <ol class="clean">
+              <li><b>是事物的自我否定</b>——不是外力强加的，是事物内在矛盾发展的必然结果。</li>
+              <li><b>是发展的环节</b>——否定推动事物从旧形态到新形态。</li>
+              <li><b>是联系的环节</b>——新事物是在旧事物内部产生的，保留了旧事物的合理因素。</li>
+              <li><b>实质是"扬弃"</b>——既克服又保留。</li>
+            </ol>
+            <p class="hint">与形而上学否定的区别：形而上学的否定是外力消灭；辩证的否定是扬弃——"否定中包含肯定"。</p>
+          </div>
+
+          <div class="method">
+            <span class="label">3.4.3 否定之否定</span>
+            <p>事物发展经过两次否定，完成一个周期：肯定阶段（正题）→ 第一次否定（反题）→ 第二次否定（否定之否定/合题）。</p>
+            <ul class="clean">
+              <li>看似回到了起点——合题在外表上类似于正题</li>
+              <li>实际是更高层次的重演——合题包含了正题和反题的合理因素，在更高基础上统一</li>
+              <li>发展道路是<b>螺旋上升</b>的——不是直线前进，也不是原地转圈</li>
+            </ul>
+            <p class="hint">经典例子：种子→植物→种子。新种子看似回到了起点，但它经过了完整生长过程，携带更丰富的信息——更高层次的回归。</p>
+          </div>
+
+          <div class="diagram-box">
+            <div class="mermaid">
+graph LR
+    subgraph 周期一
+        P1["① 正题·肯定<br/>（如：自然饮食）"] --> R1["② 反题·否定<br/>（如：极端节食）"]
+        R1 --> S1["③ 否定之否定·合题<br/>（新生活方式·更高回归）"]
+    end
+    S1 -->|"螺旋上升：<br/>看似回到起点<br/>实为更高层次重演"| P2["④ 新的正题<br/>（更高层次肯定）"]
+    P2 --> R2["⑤ 新的反题"]
+    R2 --> S2["⑥ 更高的否定之否定"]
+            </div>
+            <div class="cap">图示：否定之否定 · 螺旋上升（对应 3.4.3）</div>
+          </div>
+          <p class="hint"><b>螺旋上升 ≠ 直线前进（会曲折）≠ 原地转圈（会上升）</b>。每个周期在外形上"回到类似起点"，但在内容上包含前两阶段的合理因素，处于更高层次。这正是"发展"与"循环"的根本区别。</p>
+        </div>
+
+        <div class="section" id="m3-5">
+          <h3>3.5 三大规律的内在关系</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>规律</th><th>回答的问题</th><th>地位</th></tr></thead>
+              <tbody>
+                <tr><td><b>对立统一规律</b></td><td>事物为什么发展（根本动力）</td><td>核心中的核心，揭示事物发展的源泉和动力</td></tr>
+                <tr><td><b>质量互变规律</b></td><td>事物怎样发展（发展形式）</td><td>揭示事物发展的状态和过程</td></tr>
+                <tr><td><b>否定之否定规律</b></td><td>事物向哪里发展（方向道路）</td><td>揭示事物发展的方向和趋势</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><b>三者关系</b>：</p>
+          <ul class="clean">
+            <li>对立统一规律是根本——没有矛盾就没有量变和质变，也没有否定和扬弃</li>
+            <li>质量互变规律是对立统一规律的具体表现——量变是矛盾双方力量消长的积累，质变是矛盾双方地位转化的结果</li>
+            <li>否定之否定规律是对立统一规律的展开——肯定与否定本身就是一对矛盾，否定之否定是矛盾多次转化的周期性表现</li>
+          </ul>
+
+          <div class="diagram-box">
+            <div class="mermaid">
+graph TB
+    Core["对立统一规律<br/>（核心 · 根本动力）<br/>回答：事物为什么发展"]
+    Core -->|"具体表现"| Q["质量互变规律<br/>回答：事物怎样发展<br/>（发展的形式与状态）"]
+    Core -->|"辩证展开"| N["否定之否定规律<br/>回答：事物向哪里发展<br/>（方向与道路）"]
+    Q -.->|"量变＝矛盾力量消长的积累<br/>质变＝矛盾地位的根本转化"| Core
+    N -.->|"肯定与否定本身就是一对矛盾<br/>否定之否定＝矛盾多次转化的周期"| Core
+            </div>
+            <div class="cap">图示：三大规律的内在关系（对应 3.5）</div>
+          </div>
+          <p>一句话总结：<b>矛盾是动力，量变质变是形式，否定之否定是方向。</b></p>
+        </div>
+
+        <div class="section">
+          <h3>3.6 完整示范案例：用三大规律分析"减肥"</h3>
+          <p>下面用一个生活案例演示三大规律如何同时作用于同一个过程。读完这个案例后，你应该能模仿它，自选一个主题做同样的分析（这也是本模块里程碑任务的热身）。</p>
+
+          <div class="method">
+            <span class="label">用对立统一规律看：减肥的动力来自哪里？</span>
+            <ul class="clean">
+              <li>主要矛盾：能量摄入与能量消耗之间的矛盾。</li>
+              <li>矛盾双方的同一性：完全断食（极端压低摄入）会降低基础代谢（消耗同步下降）——矛盾一方的极端压制导致另一方同步变化。</li>
+              <li>次要矛盾：饮食偏好与健康要求、社交聚餐与节食计划、运动时间与工作安排——处理不好，任一次要矛盾都可能上升为主要矛盾。</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">用质量互变规律看：减肥是怎样发生的？</span>
+            <ul class="clean">
+              <li>量变阶段：每周减重 0.5 公斤上下，外观几乎无变化——这是渐变积累。</li>
+              <li>"度"的标定：每周 0.5–1 公斤在健康的度内；每周超过 2 公斤，量变突破健康的度，质变为"肌肉流失、代谢损伤"。度因人而异。</li>
+              <li>质变节点：当累计减重达到某个界限（如体重的 5–10%），会发生可观察的质变——体型轮廓改变、体能跃升、健康指标改善。质变后进入"维持期"的新量变。</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">用否定之否定规律看：减肥的道路为什么是曲折的？</span>
+            <ul class="clean">
+              <li>肯定阶段：自然饮食状态（想吃什么吃什么，体重超标）。</li>
+              <li>第一次否定：节食阶段——否定旧的饮食模式，体重下降。但单纯的否定（压抑）往往不可持续。</li>
+              <li>反弹：很多人节食后反弹，看似"回到了起点"——若只是回到旧习惯，那是真正的循环；若带着"极端节食不可持续"的认知重建饮食模式，那就是螺旋上升。</li>
+              <li>否定之否定（合题）：建立新的饮食生活方式——既能享受食物，又能自动维持健康体重。</li>
+            </ul>
+          </div>
+          <p><b>三大规律如何协同</b>：摄入与消耗的矛盾（对立统一）提供了动力；每周 0.5 公斤的渐变（质量互变）是变化形式；节食→反弹→新生活方式（否定之否定）是方向和道路。三者不是三个孤立的视角，而是同一个过程的三个侧面。</p>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M3</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>概念</th><th>一句话解释</th></tr></thead>
+              <tbody>
+                <tr><td><b>普遍联系</b></td><td>一切事物都与其他事物相互联系、相互作用</td></tr>
+                <tr><td><b>永恒发展</b></td><td>一切事物都处于运动变化中，新事物不断代替旧事物</td></tr>
+                <tr><td><b>矛盾的同一性</b></td><td>矛盾双方相互依存、相互转化的性质</td></tr>
+                <tr><td><b>矛盾的斗争性</b></td><td>矛盾双方相互排斥、相互对立的性质</td></tr>
+                <tr><td><b>矛盾的普遍性</b></td><td>矛盾存在于一切事物和一切过程之中</td></tr>
+                <tr><td><b>矛盾的特殊性</b></td><td>每个矛盾都有其独特的性质和解决方式</td></tr>
+                <tr><td><b>主要矛盾</b></td><td>在多种矛盾中起决定作用的矛盾</td></tr>
+                <tr><td><b>矛盾的主要方面</b></td><td>矛盾双方中居于支配地位的一方</td></tr>
+                <tr><td><b>质 / 量 / 度</b></td><td>内在规定性 / 数量规定性 / 保持质的量的界限</td></tr>
+                <tr><td><b>量变 / 质变</b></td><td>渐进不显著的变化 / 根本性质的飞跃</td></tr>
+                <tr><td><b>扬弃</b></td><td>既克服又保留的辩证否定</td></tr>
+                <tr><td><b>否定之否定</b></td><td>经过两次否定完成一个周期，螺旋上升</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M3</h3>
+          <ol class="clean">
+            <li>找一个你工作中正在面对的问题，用"主要矛盾+次要矛盾"框架分析：主要矛盾是什么？解决了它，次要矛盾会怎样变化？</li>
+            <li>"度"的练习：举出 3 个生活实例，标定"度"的边界——在什么范围内量变不引起质变？突破什么界限就发生质变？</li>
+            <li>否定之否定：回忆你学习一项技能的经历，画出"初始状态→遇到困难否定→更高层次回归"的螺旋上升路径。</li>
+            <li>三大规律关系：用一棵树的生长过程，说明三大规律如何同时起作用。</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M3</div>
+          <p><b>任务：</b>完成一份"三大规律关系图解"（不少于 800 字）。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>可用文字描述图解结构，清晰描述各部分的层级关系</li>
+            <li>标注每个规律的核心命题</li>
+            <li>标注每个规律的适用条件</li>
+            <li>说明三者间的层级关系：哪个是根本，哪个是表现，哪个是展开</li>
+            <li>附 3 个生活实例，每个实例同时涉及三个规律</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M4 ===== -->
+      <section class="module" id="m4">
+        <div class="module-head">
+          <span class="mno">M4</span>
+          <h2>唯物辩证法：五大基本范畴</h2>
+          <span class="module-meta">因果 · 必然偶然 · 可能现实 · 内容形式 · 现象本质</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>能阐述五大范畴中每一对范畴的辩证关系</li>
+              <li>能说明各对范畴"对立统一"而非"简单对立"的含义</li>
+              <li>能用全部五个范畴分析同一个新闻事件</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="diagram-box">
+          <div class="mermaid">
+graph TB
+    Root["唯物辩证法的五大基本范畴"]
+    Root --> C1["原因 ◆ 结果<br/>链条可互相转化·一因多果·同果异因"]
+    Root --> C2["必然 ◆ 偶然<br/>必然寓于偶然·偶然背后有必然"]
+    Root --> C3["可能 ◆ 现实<br/>可能以现实为据·转化需条件"]
+    Root --> C4["内容 ◆ 形式<br/>内容决定形式·形式反作用"]
+    Root --> C5["现象 ◆ 本质<br/>本质决定现象·现象可歪曲本质"]
+          </div>
+          <div class="cap">图示：五大基本范畴总览（每一对都是对立统一关系，对应 M4 全章）</div>
+        </div>
+        <p class="hint">五大范畴不是孤立的知识点，而是观察同一事物复杂性的五个不同"镜头"。分析一个事件时，逐一对焦每个镜头，就能拼出更立体的图像（见 M4 里程碑任务）。</p>
+
+        <div class="section">
+          <h3>4.1 原因与结果</h3>
+          <ul class="clean">
+            <li><b>因果的客观性</b>：因果联系是客观的，不是主观臆造的。</li>
+            <li><b>因果的普遍性</b>：任何现象都有原因，任何原因都产生结果。"没有无因之果，也没有无果之因。"</li>
+            <li><b>因果的辩证性</b>：原因和结果可以互相转化（因果链条无限延伸）；一因多果、同果异因；现实中因果往往是网状的、有反馈循环的。</li>
+          </ul>
+          <p class="hint">与形而上学的区别：形而上学把因果看作单向直线（A→B→C），辩证法看到因果的交互、多线、反馈。</p>
+        </div>
+
+        <div class="section">
+          <h3>4.2 必然性与偶然性</h3>
+          <ul class="clean">
+            <li><b>必然性</b>：事物发展过程中一定要发生、确定不移的趋势。由事物内部的根本矛盾决定。</li>
+            <li><b>偶然性</b>：可能出现也可能不出现、可能这样也可能那样出现的趋势。由事物外部的、非根本性的联系决定。</li>
+            <li><b>辩证关系</b>：必然寓于偶然之中（抛一万次硬币正反面比例趋近 1:1）；偶然性背后隐藏着必然性；二者在一定条件下相互转化。</li>
+          </ul>
+          <p class="hint">方法论：重视必然性（把握大趋势），但不可忽视偶然性（抓住机遇，防范风险）。</p>
+        </div>
+
+        <div class="section">
+          <h3>4.3 可能性与现实性</h3>
+          <ul class="clean">
+            <li><b>现实性</b>：现在已经存在的、有内在根据的、合乎必然的存在。</li>
+            <li><b>可能性</b>：包含在现实事物中的、预示着发展前途的、未来可以变为现实的东西。</li>
+            <li><b>辩证关系</b>：可能性以现实为根据；现实性包含着可能性；可能性转化为现实性需要条件；可能性有多样性（好的/坏的、大的/小的、现实的/抽象的）。</li>
+          </ul>
+          <p class="hint">方法论：区分可能和不可能；在多种可能性中选择最有利的；创造条件促好可能变现实，防坏可能变现实。</p>
+        </div>
+
+        <div class="section">
+          <h3>4.4 内容与形式</h3>
+          <ul class="clean">
+            <li><b>内容</b>：事物内部各种要素的总和，是事物存在的基础。<b>形式</b>：把内容诸要素统一起来的结构或表现方式。</li>
+            <li><b>辩证关系</b>：内容决定形式；形式反作用于内容（适合的促进、不适合的阻碍）；内容与形式总有不一致（内容先变、形式后变）；形式有相对独立性（同一内容可有多种形式，同一形式可容纳不同内容）。</li>
+          </ul>
+          <p class="hint">方法论：注重内容，但不忽视形式。反对"形式主义"，也反对"形式虚无主义"。</p>
+        </div>
+
+        <div class="section">
+          <h3>4.5 现象与本质</h3>
+          <ul class="clean">
+            <li><b>本质</b>：事物的根本性质，是内部各要素间的内在联系。<b>现象</b>：本质在外部的表现，是感官可感知的。</li>
+            <li><b>辩证关系</b>：本质决定现象；现象表现本质；现象可能歪曲本质（真象 / 假象）；本质有层次性（初级本质、二级本质……）。</li>
+          </ul>
+          <p class="hint">方法论：透过现象看本质。不能停留在表面现象，也不能脱离现象去猜本质。</p>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M4</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>范畴</th><th>核心关系</th><th>方法论要点</th></tr></thead>
+              <tbody>
+                <tr><td><b>原因与结果</b></td><td>因果链条可互相转化，一因多果、同果异因</td><td>追根溯源，但也注意反馈循环</td></tr>
+                <tr><td><b>必然与偶然</b></td><td>必然寓于偶然，偶然背后有必然</td><td>战略重必然，战术重偶然</td></tr>
+                <tr><td><b>可能与现实</b></td><td>可能以现实为根据，转化为现实需条件</td><td>创造条件促好可能，防坏可能</td></tr>
+                <tr><td><b>内容与形式</b></td><td>内容决定形式，形式反作用于内容</td><td>重内容但不忽视形式</td></tr>
+                <tr><td><b>现象与本质</b></td><td>本质决定现象，现象可能歪曲本质</td><td>透过现象看本质</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M4</h3>
+          <ol class="clean">
+            <li>用"原因与结果"分析一个你最近做的决定：你的决定（原因）可能产生哪些结果？这些结果又可能成为什么的原因？</li>
+            <li>"必然寓于偶然"——举一个你生活中的例子说明，看似偶然的事件背后隐藏着必然性。</li>
+            <li>选一个你正在考虑的计划，列出它包含的多种可能性，以及你需要创造什么条件让好的可能变为现实。</li>
+            <li>找一个你容易被表面现象误导的领域，练习"透过现象看本质"的分析。</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M4</div>
+          <p><b>任务：</b>选定一个新闻事件，用全部 5 个范畴逐一分析，形成"五维辩证分析报告"（不少于 1000 字）。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>选择一个你关注的近期新闻事件</li>
+            <li>每个范畴单独一节，用该范畴的框架分析这个事件</li>
+            <li>每个范畴的分析需结合该范畴的辩证关系展开（不能只用形式逻辑）</li>
+            <li>结尾需综合五个范畴，说明它们如何从不同维度共同揭示了事件的复杂性</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== M5 ===== -->
+      <section class="module" id="m5">
+        <div class="module-head">
+          <span class="mno">M5</span>
+          <h2>现代辩证法发展与中西辩证思维比较</h2>
+          <span class="module-meta">法兰克福 · 周易老子王阳明 · 中西比较</span>
+        </div>
+
+        <div class="section">
+          <h3>学习目标</h3>
+          <div class="goals">
+            <ul class="clean">
+              <li>了解现代西方哲学中辩证思维的发展</li>
+              <li>了解中国哲学中辩证思维的传统</li>
+              <li>能从至少 3 个维度比较中西辩证思维的异同</li>
+              <li>理解辩证法在不同文化传统中的不同表现形态</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>5.1 现代西方哲学中的辩证思维</h3>
+          <div class="method">
+            <span class="label">法兰克福学派：批判辩证法</span>
+            <ul class="clean">
+              <li><b>否定辩证法</b>（阿多诺）：反对黑格尔最终走向"合题"的封闭体系。真正的辩证法应该停留在"否定"阶段，不急于调和矛盾。</li>
+              <li><b>批判理论</b>：辩证法不仅用于认识世界，更用于批判社会现实中的不合理。</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">存在主义：个体辩证法</span>
+            <ul class="clean">
+              <li>克尔凯郭尔批评黑格尔只看到"普遍"看不到"个体"。真正的辩证运动是个人在存在选择中的"飞跃"。</li>
+              <li>萨特强调"存在先于本质"——人的本质是在自由选择中辩证地生成的。</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">马克思主义辩证法的当代发展</span>
+            <ul class="clean">
+              <li><b>西方马克思主义</b>（卢卡奇、葛兰西、阿尔都塞等）：强调辩证法的总体性、历史性，反对把辩证法简化为"自然规律"。</li>
+              <li><b>实践辩证法</b>：辩证法不仅是认识方法，更是改造世界的实践方法。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>5.2 中国哲学中的辩证传统</h3>
+          <div class="method">
+            <span class="label">周易：阴阳辩证法</span>
+            <ul class="clean">
+              <li><b>阴阳对立统一</b>："一阴一阳之谓道"——对立面的统一就是事物的根本规律。</li>
+              <li><b>变易思想</b>："易"有三义：变易、简易、不易——世界是变化的，变化有规律，规律可把握。</li>
+              <li><b>时位思想</b>：同一事物在不同时间、位置，吉凶祸福不同。与"具体问题具体分析"一致。</li>
+              <li><b>太极图</b>：阴阳鱼——阴中有阳、阳中有阴，阴阳互含互转。</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">老子：柔弱辩证法</span>
+            <ul class="clean">
+              <li><b>反向思维</b>："反者道之动"——看问题要看到它的反面。</li>
+              <li><b>无为辩证法</b>："无为而无不为"——顺应事物自身矛盾运动规律地作为。</li>
+              <li><b>守弱处下</b>：在矛盾中主动选择"弱""下""柔"的一面，因为弱会转化为强。</li>
+            </ul>
+          </div>
+          <div class="method">
+            <span class="label">王阳明：知行辩证法</span>
+            <ul class="clean">
+              <li><b>知与行的对立统一</b>：知中有行，行中有知。"知是行的主意，行是知的功夫。"</li>
+              <li><b>知行互相促进</b>：真知必须见诸行动，行动中深化认识。</li>
+              <li><b>致良知</b>：在实践中不断"致"自己本有的良知——动态的辩证发展过程。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>5.3 中西辩证思维比较</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>比较维度</th><th>中国辩证思维</th><th>西方辩证法</th></tr></thead>
+              <tbody>
+                <tr><td>思维方式</td><td>重直觉体悟，重意象类比</td><td>重逻辑推演，重概念分析</td></tr>
+                <tr><td>表达方式</td><td>箴言式、隐喻式</td><td>论证式、体系式（正题-反题-合题）</td></tr>
+                <tr><td>关注焦点</td><td>人伦实践、生命智慧（如何"用"）</td><td>自然规律、逻辑结构（如何"知"）</td></tr>
+                <tr><td>矛盾态度</td><td>重视平衡、和谐，"和而不同"</td><td>重视斗争、否定，"矛盾推动发展"</td></tr>
+                <tr><td>发展观</td><td>循环论色彩较重</td><td>方向论色彩较重（螺旋上升）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><b>共同点</b>：都认识到普遍联系和永恒变化；都承认对立面的统一和转化；都反对孤立、静止、片面地看问题。</p>
+          <p><b>差异的深层原因</b>：中国（农业文明、宗法社会——重视和谐、稳定、天人合一）；西方（商业文明、城邦政治——重视辩论、逻辑、对抗中的发展）。</p>
+        </div>
+
+        <div class="section">
+          <h3>关键概念速查 · M5</h3>
+          <div class="tbl-wrap">
+            <table class="styled">
+              <thead><tr><th>概念</th><th>一句话解释</th></tr></thead>
+              <tbody>
+                <tr><td><b>否定辩证法</b></td><td>阿多诺主张不急于调和矛盾，保持批判的否定性</td></tr>
+                <tr><td><b>批判理论</b></td><td>法兰克福学派用辩证法批判社会不合理</td></tr>
+                <tr><td><b>阴阳辩证</b></td><td>对立面的依存、互含、互转</td></tr>
+                <tr><td><b>变易思想</b></td><td>万物皆变，变化有规律，规律可把握</td></tr>
+                <tr><td><b>无为辩证法</b></td><td>顺应事物自身矛盾运动规律地作为</td></tr>
+                <tr><td><b>知行合一</b></td><td>知中有行，行中有知，互相促进</td></tr>
+                <tr><td><b>直觉体悟型辩证</b></td><td>中国式辩证思维特征，重直觉而非推演</td></tr>
+                <tr><td><b>逻辑推演型辩证</b></td><td>西方式辩证法特征，重概念体系</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>思考练习 · M5</h3>
+          <ol class="clean">
+            <li>你更习惯哪种辩证思维方式——直觉体悟型还是逻辑推演型？为什么？这种偏好是否也构成一种"片面"？</li>
+            <li>"和而不同"与"矛盾推动发展"——这两种态度在你的生活中分别适用于什么场景？</li>
+            <li>王阳明的"知行合一"对你在学习辩证法这件事上有什么启示？你是否存在"知而不行"的情况？</li>
+          </ol>
+        </div>
+
+        <div class="task">
+          <div class="t-title">里程碑任务 · M5</div>
+          <p><b>任务：</b>写一篇"中西辩证思维比较"短文（不少于 800 字）。</p>
+          <p><b>要求：</b></p>
+          <ul class="clean">
+            <li>至少涉及 3 个维度的对比</li>
+            <li>每个维度需举例说明</li>
+            <li>结尾需说明：你认为中西辩证思维能否互相补充？如何补充？</li>
+            <li>不要求中立持平——可以有自己的立场，但需给出理由</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== Buffer ===== -->
+      <section class="module" id="buffer">
+        <div class="module-head">
+          <span class="mno" style="background:var(--jade)">缓冲</span>
+          <h2>第一阶段缓冲：复习整理</h2>
+        </div>
+
+        <h3>检查清单</h3>
+        <ul class="checklist">
+          <li><span class="box"></span><div><b>M1</b>：辩证法 vs 形而上学对比笔记（800 字+，5 组对比维度）</div></li>
+          <li><span class="box"></span><div><b>M2</b>：三段式分析一个日常现象（800 字+，正题-反题-合题完整推演）</div></li>
+          <li><span class="box"></span><div><b>M3</b>：三大规律关系图解（800 字+，3 个生活实例）</div></li>
+          <li><span class="box"></span><div><b>M4</b>：五维辩证分析报告（1000 字+，5 个范畴逐一分析）</div></li>
+          <li><span class="box"></span><div><b>M5</b>：中西辩证思维比较短文（800 字+，3 个维度对比）</div></li>
+        </ul>
+
+        <div class="selfcheck">
+          <div class="sc-title">自查问题</div>
+          <ol class="clean">
+            <li>我能否不看笔记，用自己的话向一个完全不懂的人解释三大规律？</li>
+            <li>我能否在生活中立即识别出一个"形而上学思维"的例子？</li>
+            <li>我对黑格尔辩证法和唯物辩证法的区别是否清晰？</li>
+            <li>五大范畴我是否都能举出例子？</li>
+          </ol>
+        </div>
+        <p class="hint">如果以上问题有任何一个答"不能"，回到对应模块重读相关章节，不要急于进入第二阶段。</p>
+      </section>
+
+      <div class="footer">
+        来源：本地 Markdown 文档《辩证法教材_第一阶段_理论学习》（作者已授权）<br/>
+        本页由正文一键可视化生成 · 朱砂 / 黛青学术配色 · 含 6 张 Mermaid 示意图
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  if (window.mermaid){
+    mermaid.initialize({startOnLoad:true, theme:'neutral',
+      themeVariables:{primaryColor:'#fbeee8',lineColor:'#b8472e',fontSize:'15px'}});
+  }
+</script>
+</body>
+</html>
